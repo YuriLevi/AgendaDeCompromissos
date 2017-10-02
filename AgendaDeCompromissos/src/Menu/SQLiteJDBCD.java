@@ -127,7 +127,7 @@ public class SQLiteJDBCD {
         }
     }
     
-    public void selecionaDadosUsuario (Connection conn) {
+    public void  selecionaDadosUsuario (Connection conn) {
         
         String sql = "SELECT id, nome,senha "
                      + "FROM usuario';";
@@ -140,6 +140,11 @@ public class SQLiteJDBCD {
             
             // loop no resultado
             while (rs.next()) {
+                
+                int x = rs.getInt("id");
+                
+                return x;
+                
                 System.out.println(rs.getInt("id") +  "\t" +
                                    rs.getString("nome") + "\t" +
                                    rs.getString("data") + "\t" +  

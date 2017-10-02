@@ -14,13 +14,15 @@ public class GerenciadorBD {
     
       
     
-    public  static void inserir(int idBD , String nomeBD, String dataBD, String horaBD, String infoBD){
+    public  static void inserirComrpomisso(int idBD , String nomeBD, String dataBD, String horaBD, String infoBD){
         
         Connection conn = banco.connect();
-        banco.criaTabela(conn);
+        banco.criaTabelaCompromisso(conn);
         banco.inserirCompromisso(conn, idBD, nomeBD, dataBD, horaBD, infoBD);
         
     }
+    
+    public static void ListarCompromisso()
             
     
     
