@@ -1,5 +1,7 @@
 package Janelas;
 
+import Menu.*;
+
 import java.text.SimpleDateFormat;
 import java.text.DateFormat;
 
@@ -129,6 +131,7 @@ public class CompromissoInserir extends javax.swing.JInternalFrame {
 
     private void jButtonInserirCompromissoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonInserirCompromissoActionPerformed
         String nome, hora,data, info;
+        int x = 0;
         
         DateFormat dataFomatador = new SimpleDateFormat("yyyy/MM/dd");        
         
@@ -136,7 +139,8 @@ public class CompromissoInserir extends javax.swing.JInternalFrame {
         hora = jFormattedTextFieldHoraCompromisso.getText();
         data = dataFomatador.format(jDateChooserDataCompromisso.getDate());      
         info = jTextAreaInfoCompromisso.getText();        
-        System.out.println("\n"+ nome +"\n" + hora + "\n" + data + "\n" + info );
+        
+        
         
     }//GEN-LAST:event_jButtonInserirCompromissoActionPerformed
 
