@@ -5,6 +5,13 @@
  */
 package Janelas;
 
+import BD.GerenciadorBD;
+import Tipos.Compromisso;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import javax.swing.DefaultComboBoxModel;
+
 /**
  *
  * @author Rizzadinha
@@ -29,12 +36,9 @@ public class CompromissoRemover extends javax.swing.JInternalFrame {
 
         jToggleButtonCompromissoRemover = new javax.swing.JToggleButton();
         jDateChooserRemover = new com.toedter.calendar.JDateChooser();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jListCRemover = new javax.swing.JList<>();
         jLabel2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jTextFieldDataCompromissoAchadoRemover = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTextAreaInfoCompromissoAchadoRemover = new javax.swing.JTextArea();
         jLabel6 = new javax.swing.JLabel();
@@ -42,6 +46,10 @@ public class CompromissoRemover extends javax.swing.JInternalFrame {
         jLabel3 = new javax.swing.JLabel();
         jTextFieldNomeCompromissoAchadoRemover = new javax.swing.JTextField();
         jToggleButtonEncontrarRemover = new javax.swing.JToggleButton();
+        jComboBoxRemover = new javax.swing.JComboBox<>();
+        JButtonSelecionar = new javax.swing.JButton();
+        jFormattedTextData = new javax.swing.JFormattedTextField();
+        jLabel1 = new javax.swing.JLabel();
 
         setClosable(true);
         setTitle("Remover Compromisso");
@@ -49,8 +57,11 @@ public class CompromissoRemover extends javax.swing.JInternalFrame {
 
         jToggleButtonCompromissoRemover.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
         jToggleButtonCompromissoRemover.setText("Remover");
-
-        jScrollPane1.setViewportView(jListCRemover);
+        jToggleButtonCompromissoRemover.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButtonCompromissoRemoverActionPerformed(evt);
+            }
+        });
 
         jLabel2.setText("Nome:");
 
@@ -73,6 +84,22 @@ public class CompromissoRemover extends javax.swing.JInternalFrame {
             }
         });
 
+        JButtonSelecionar.setText("Selecionar");
+        JButtonSelecionar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JButtonSelecionarActionPerformed(evt);
+            }
+        });
+
+        try {
+            jFormattedTextData.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("####/##/##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        jFormattedTextData.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+
+        jLabel1.setText("YYYY/MM/DD");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -81,25 +108,31 @@ public class CompromissoRemover extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jDateChooserRemover, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(93, 93, 93)
+                                .addComponent(jComboBoxRemover, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jToggleButtonEncontrarRemover)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(JButtonSelecionar)
+                                .addGap(58, 58, 58))))
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING))
                             .addComponent(jLabel5))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextFieldDataCompromissoAchadoRemover, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(jTextFieldHoraCompromissoAchadoRemover, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jTextFieldNomeCompromissoAchadoRemover, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jDateChooserRemover, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jTextFieldHoraCompromissoAchadoRemover, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTextFieldNomeCompromissoAchadoRemover, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 63, Short.MAX_VALUE)
+                            .addComponent(jFormattedTextData, javax.swing.GroupLayout.Alignment.LEADING))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jToggleButtonEncontrarRemover))
+                        .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -111,19 +144,17 @@ public class CompromissoRemover extends javax.swing.JInternalFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(25, 25, 25)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jDateChooserRemover, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(24, 24, 24)
-                        .addComponent(jToggleButtonEncontrarRemover)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                .addGap(25, 25, 25)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jDateChooserRemover, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jComboBoxRemover, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jToggleButtonEncontrarRemover)
+                    .addComponent(JButtonSelecionar))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextFieldNomeCompromissoAchadoRemover, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
@@ -131,10 +162,12 @@ public class CompromissoRemover extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(jTextFieldHoraCompromissoAchadoRemover, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(9, 9, 9)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(6, 6, 6)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(jTextFieldDataCompromissoAchadoRemover, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jFormattedTextData, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
+                .addGap(3, 3, 3)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -155,22 +188,62 @@ public class CompromissoRemover extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jToggleButtonEncontrarRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButtonEncontrarRemoverActionPerformed
-        // TODO add your handling code here:
+       
+        ArrayList<Compromisso> encontrado = new ArrayList<Compromisso>();
+        ArrayList<String> nomes = new ArrayList<String>();
+        DateFormat dataFomatador = new SimpleDateFormat("yyyy/MM/dd"); 
+              
+        encontrado = GerenciadorBD.listarDatas(dataFomatador.format(jDateChooserRemover.getDate()));
+        
+        for(int i=0;i<encontrado.size();i++){
+            
+            nomes.add(encontrado.get(i).getNome());
+           
+        }       
+        
+        jComboBoxRemover.setModel(new DefaultComboBoxModel(nomes.toArray()));
+        
+        
     }//GEN-LAST:event_jToggleButtonEncontrarRemoverActionPerformed
+
+    private void JButtonSelecionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JButtonSelecionarActionPerformed
+        
+        DateFormat dataFomatador = new SimpleDateFormat("yyyy/MM/dd"); 
+        
+        Compromisso aC = GerenciadorBD.auxAlterar(jComboBoxRemover.getSelectedItem().toString(),dataFomatador.format(jDateChooserRemover.getDate()));       
+        
+      
+        jTextFieldNomeCompromissoAchadoRemover.setText(aC.getNome());
+        jTextFieldHoraCompromissoAchadoRemover.setText(aC.getHora());
+        jFormattedTextData.setText(aC.getData());
+        jTextAreaInfoCompromissoAchadoRemover.setText(aC.getInfo());
+       
+    }//GEN-LAST:event_JButtonSelecionarActionPerformed
+
+    private void jToggleButtonCompromissoRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButtonCompromissoRemoverActionPerformed
+        
+        DateFormat dataFomatador = new SimpleDateFormat("yyyy/MM/dd");
+        
+        
+        GerenciadorBD.deletarCompromisso(dataFomatador.format(jDateChooserRemover.getDate()),jComboBoxRemover.getSelectedItem().toString());
+        
+        
+    }//GEN-LAST:event_jToggleButtonCompromissoRemoverActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton JButtonSelecionar;
+    private javax.swing.JComboBox<String> jComboBoxRemover;
     private com.toedter.calendar.JDateChooser jDateChooserRemover;
+    private javax.swing.JFormattedTextField jFormattedTextData;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JList<String> jListCRemover;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextArea jTextAreaInfoCompromissoAchadoRemover;
-    private javax.swing.JTextField jTextFieldDataCompromissoAchadoRemover;
     private javax.swing.JTextField jTextFieldHoraCompromissoAchadoRemover;
     private javax.swing.JTextField jTextFieldNomeCompromissoAchadoRemover;
     private javax.swing.JToggleButton jToggleButtonCompromissoRemover;

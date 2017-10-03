@@ -111,6 +111,65 @@ public class SQLiteJDBCD {
         
     }
     
+    public  Compromisso selecionaCompromissoAlterar(String nome, String data) {
+        
+        String sql = "SELECT id, nome,data,hora,info "
+                     + "FROM compromisso WHERE data = ?  AND nome = ?;";
+        
+        try {
+            
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            
+            pstmt.setString(1, data);
+            pstmt.setString(2, nome);
+            
+            ResultSet rs  = pstmt.executeQuery();
+            
+            
+            
+            while (rs.next()) {
+                Compromisso c = new Compromisso();
+                    
+                    c.setId(rs.getInt("id"));
+                    c.setNome(rs.getString("nome"));
+                    c.setData(rs.getString("data"));
+                    c.setHora(rs.getString("hora"));
+                    c.setInfo(rs.getString("info"));
+                                   
+                    return c;
+            }
+            
+                pstmt.close();
+                
+                
+            
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        
+        return null;
+        
+    }
+    
+    public void deletarCompromisso(String aData,String aNome){
+                            
+        String sql = "DELETE FROM compromisso WHERE nome = ? AND data = ?";
+                            
+  
+        try {
+                PreparedStatement pstmt = conn.prepareStatement(sql); 
+                
+                pstmt.setString(1, aNome);
+                pstmt.setString(2, aData);
+                                       
+              
+                pstmt.executeUpdate();
+                
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+    
     public  ArrayList<Compromisso> selecionaCompromissoUltimos () {
         
         String sql = "SELECT id, nome,data,hora,info "
@@ -226,45 +285,7 @@ public class SQLiteJDBCD {
         
     }
     
-    public  Compromisso selecionaCompromissoAlterar(String nome, String data) {
-        
-        String sql = "SELECT id, nome,data,hora,info "
-                     + "FROM compromisso WHERE data = ?  AND nome = ?;";
-        
-        try {
-            
-            PreparedStatement pstmt = conn.prepareStatement(sql);
-            
-            pstmt.setString(1, data);
-            pstmt.setString(2, nome);
-            
-            ResultSet rs  = pstmt.executeQuery();
-            
-            
-            
-            while (rs.next()) {
-                Compromisso c = new Compromisso();
-                    
-                    c.setId(rs.getInt("id"));
-                    c.setNome(rs.getString("nome"));
-                    c.setData(rs.getString("data"));
-                    c.setHora(rs.getString("hora"));
-                    c.setInfo(rs.getString("info"));
-                                   
-                    return c;
-            }
-            
-                pstmt.close();
-                
-                
-            
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
-        
-        return null;
-        
-    }
+    
     
     
     

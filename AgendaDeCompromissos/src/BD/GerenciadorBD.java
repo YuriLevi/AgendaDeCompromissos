@@ -33,6 +33,18 @@ public class GerenciadorBD {
         banco.closeConnect();
     }
     
+    public static void deletarCompromisso(String dataGBD,String nomeGBD){
+        
+        banco.connect();
+        
+        banco.deletarCompromisso(dataGBD, nomeGBD);
+        
+        banco.closeConnect();
+        
+        
+    }
+    
+    
     public static  ArrayList<Compromisso> listarUltimos(){
         
         ArrayList<Compromisso> GBDLista = new ArrayList<Compromisso>();
