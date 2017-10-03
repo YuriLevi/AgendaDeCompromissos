@@ -24,6 +24,15 @@ public class GerenciadorBD {
         
     }
     
+    public static void alterarCompromisso(Compromisso compromissoBD, String dataGBD, String nomeGBD){
+        
+        banco.connect();
+        
+        banco.alterarCompromisso(compromissoBD, dataGBD, nomeGBD);
+        
+        banco.closeConnect();
+    }
+    
     public static  ArrayList<Compromisso> listarUltimos(){
         
         ArrayList<Compromisso> GBDLista = new ArrayList<Compromisso>();
@@ -77,7 +86,19 @@ public class GerenciadorBD {
         
     }
     
+    public static  Compromisso auxAlterar(String nomeGBD, String dataGBD){
+       
+        
+        banco.connect();
+        
+        Compromisso cGBD = banco.selecionaCompromissoAlterar(nomeGBD, dataGBD);
     
+        banco.closeConnect();
+        System.out.println("teste:" + cGBD.getNome());
+        
+        return cGBD;  
+        
+    }
             
     
     

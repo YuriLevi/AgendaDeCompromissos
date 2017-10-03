@@ -19,7 +19,7 @@ public class SQLiteJDBCD {
         
         try {
             
-            String url = "jdbc:sqlite:BDBeta4.db";
+            String url = "jdbc:sqlite:BDBeta5.db";
             
             conn = DriverManager.getConnection(url);
                      
@@ -41,7 +41,7 @@ public class SQLiteJDBCD {
            
     }
        
-    
+    //Compromisso
     public void criaTabelaCompromisso () {
         
         String sql = "CREATE TABLE IF NOT EXISTS compromisso (";
@@ -49,7 +49,7 @@ public class SQLiteJDBCD {
                 sql += "	nome text NOT NULL,";
                 sql += "	data text NOT NULL,";
                 sql += "	hora text NOT NULL,";
-                sql += "	info text NOT NULL";
+                sql += "	info text NOT NULL";         
                 sql += ");";
         
         try {
@@ -61,26 +61,6 @@ public class SQLiteJDBCD {
             System.out.println(e.getMessage());
         }
     }
-    
-    public void criaTabelaUsuario (Connection conn) {
-        
-        String sql = "CREATE TABLE IF NOT EXISTS usuario (";
-                sql += "	id integer PRIMARY KEY AUTOINCREMENT,";
-                sql += "	nome text NOT NULL,";
-                sql += "	senha text NOT NULL,";
-                
-                sql += ");";
-        
-        try {
-                Statement stmt = conn.createStatement();
-                
-            stmt.execute(sql);
-            
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
-    }
-    
     
     public void inserirCompromisso (Compromisso icCompromisso) {
         
@@ -100,22 +80,35 @@ public class SQLiteJDBCD {
             System.out.println(e.getMessage());
         }
     }
-    
-    public void inserirUsuario (Connection conn, String nome, String senha) {
-        String sql = "INSERT INTO compromisso VALUES($next_id,?,?)";
- 
+     
+    public void alterarCompromisso(Compromisso acCompromisso, String aData, String aNome){
+        
+        String sql = "UPDATE compromisso SET nome = ?,";
+               sql+= " data = ?,";
+               sql+= " hora = ?,";
+               sql+= " info = ?";
+               sql+= " WHERE data = ? AND nome = ?";
+              
+  
         try {
                 PreparedStatement pstmt = conn.prepareStatement(sql); 
                 
+                pstmt.setString(1, acCompromisso.getNome());
+                pstmt.setString(2, acCompromisso.getData());
+                pstmt.setString(3, acCompromisso.getHora());
+                pstmt.setString(4, acCompromisso.getInfo());
                 
-                pstmt.setString(2, nome);
-                pstmt.setString(3, senha);
+                pstmt.setString(5,aData);
+                pstmt.setString(6, aNome);
                 
                 pstmt.executeUpdate();
                 
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
+        
+        
+        
     }
     
     public  ArrayList<Compromisso> selecionaCompromissoUltimos () {
@@ -233,7 +226,89 @@ public class SQLiteJDBCD {
         
     }
     
+    public  Compromisso selecionaCompromissoAlterar(String nome, String data) {
+        
+        String sql = "SELECT id, nome,data,hora,info "
+                     + "FROM compromisso WHERE data = ?  AND nome = ?;";
+        
+        try {
+            
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            
+            pstmt.setString(1, data);
+            pstmt.setString(2, nome);
+            
+            ResultSet rs  = pstmt.executeQuery();
+            
+            
+            
+            while (rs.next()) {
+                Compromisso c = new Compromisso();
+                    
+                    c.setId(rs.getInt("id"));
+                    c.setNome(rs.getString("nome"));
+                    c.setData(rs.getString("data"));
+                    c.setHora(rs.getString("hora"));
+                    c.setInfo(rs.getString("info"));
+                                   
+                    return c;
+            }
+            
+                pstmt.close();
+                
+                
+            
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        
+        return null;
+        
+    }
     
+    
+    
+    
+   
+
+   
+    //Usuario
+    public void criaTabelaUsuario (Connection conn) {
+        
+        String sql = "CREATE TABLE IF NOT EXISTS usuario (";
+                sql += "	id integer PRIMARY KEY AUTOINCREMENT,";
+                sql += "	login text NOT NULL,";
+                sql += "	senha text NOT NULL,";
+                
+                sql += ");";
+        
+        try {
+                Statement stmt = conn.createStatement();
+                
+            stmt.execute(sql);
+            
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+    
+    public void inserirUsuario (Connection conn, String nome, String senha) {
+        String sql = "INSERT INTO compromisso VALUES($next_id,?,?)";
+ 
+        try {
+                PreparedStatement pstmt = conn.prepareStatement(sql); 
+                
+                
+                pstmt.setString(2, nome);
+                pstmt.setString(3, senha);
+                
+                pstmt.executeUpdate();
+                
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+     
     public void  selecionaDadosUsuario (Connection conn) {
         
         String sql = "SELECT id, nome,senha "
@@ -258,8 +333,6 @@ public class SQLiteJDBCD {
             System.out.println(e.getMessage());
         }
     }
-
-    
     
 }
 

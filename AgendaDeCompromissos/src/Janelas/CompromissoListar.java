@@ -246,14 +246,13 @@ public class CompromissoListar extends javax.swing.JInternalFrame {
         ArrayList<Compromisso> ultimos = new ArrayList<Compromisso>();
         
         DateFormat dataFomatador = new SimpleDateFormat("yyyy/MM/dd"); 
-        
-        
+                
         ultimos = GerenciadorBD.listarDatas(dataFomatador.format(jDateChooserListarData.getDate()));
         
         for(int i = 0; i < ultimos.size(); i++){
             
             jTextAreaDatas.setText( jTextAreaDatas.getText() + "Id: "+ ultimos.get(i).getId() + "  Nome: " + ultimos.get(i).getNome() + "  Hora:  " + ultimos.get(i).getHora() + "  Data: " + ultimos.get(i).getData()+ "  Info: " + ultimos.get(i).getInfo() + "\n\n"); 
-        
+                    
         }   
         
         

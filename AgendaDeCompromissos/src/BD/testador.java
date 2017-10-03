@@ -15,19 +15,25 @@ public class testador {
     
     public static void main(String args[]){
         
-        String nome = "asdas", hora ="dsa",data= "2017/10/31", info="adas";
+        String nome = "asdas", hora ="dsa",data= "2017/05/25", info="adas";
         int id= 1;
+        String nomeM= "jaum";
+        
         Compromisso cInserir1 = new Compromisso();
         
-        cInserir1.setNome("luide");
+        cInserir1.setNome("joano");
         cInserir1.setHora("12:30");
-        cInserir1.setData("2017/05/22");      
+        cInserir1.setData("2017/05/25");      
         cInserir1.setInfo("vamo zuaaar"); 
         
        //GerenciadorBD.inserirCompromisso(cInserir1);
        //GerenciadorBD.listarUltimos();
        //GerenciadorBD.listarNomes("luide");
        GerenciadorBD.listarDatas(data);
+       
+        //GerenciadorBD.alterarCompromisso(cInserir1, data, nomeM);
+       
+       
     }
     
     
