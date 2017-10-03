@@ -41,7 +41,7 @@ public class testador {
         uInserir2.setLogin("yuri");
         uInserir2.setSenha("123");
         
-        GerenciadorBD.inserirUusuario(uInserir2);
+        //GerenciadorBD.inserirUusuario(uInserir2);
         GerenciadorBD.listarUsuarioTodos();
         
        

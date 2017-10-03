@@ -325,8 +325,8 @@ public class SQLiteJDBCD {
      
     public ArrayList<Usuario> selecionaDadosUsuarioTodos() {
         
-        String sql = "SELECT id, login"
-                     + "FROM usuario;";
+        String sql = "SELECT id, login "
+                     + "FROM usuario ;";
         
         try {
             
@@ -344,7 +344,7 @@ public class SQLiteJDBCD {
                     
                     
                                    
-                    lista.add(u);
+                   lista.add(u);
             }
             
                 comandoSql.close();

@@ -118,7 +118,7 @@ public class GerenciadorBD {
         banco.connect();
         banco.criaTabelaUsuario();
         banco.inserirUsuario(usuarioGBD);
-        //banco.selecionaDadosUsuarioTodos();
+        
         banco.closeConnect();
         
         

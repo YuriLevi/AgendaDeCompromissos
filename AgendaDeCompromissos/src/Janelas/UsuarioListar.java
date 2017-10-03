@@ -5,6 +5,10 @@
  */
 package Janelas;
 
+import BD.GerenciadorBD;
+import Tipos.Usuario;
+import java.util.ArrayList;
+
 /**
  *
  * @author Rizzadinha
@@ -27,36 +31,71 @@ public class UsuarioListar extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jListListar = new javax.swing.JList<>();
+        jButtonListar = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTextAreaListar = new javax.swing.JTextArea();
 
         setTitle("Listar Usuario");
 
-        jScrollPane1.setViewportView(jListListar);
+        jButtonListar.setText("Listar");
+        jButtonListar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonListarActionPerformed(evt);
+            }
+        });
+
+        jTextAreaListar.setEditable(false);
+        jTextAreaListar.setColumns(20);
+        jTextAreaListar.setRows(5);
+        jTextAreaListar.setTabSize(5);
+        jScrollPane2.setViewportView(jTextAreaListar);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(57, 57, 57)
+                        .addComponent(jButtonListar, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addGap(4, 4, 4)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jButtonListar)
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButtonListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonListarActionPerformed
+        
+        ArrayList<Usuario> ultimos = new ArrayList<Usuario>();
+        
+        ultimos = GerenciadorBD.listarUsuarioTodos();
+        
+        for(int i = 0; i < ultimos.size(); i++){
+            
+            jTextAreaListar.setText( jTextAreaListar.getText() + "Id: " + ultimos.get(i).getId() + "          Login: " + ultimos.get(i).getLogin() + "\n\n"); 
+        
+        }
+        
+        
+    }//GEN-LAST:event_jButtonListarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JList<String> jListListar;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton jButtonListar;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTextArea jTextAreaListar;
     // End of variables declaration//GEN-END:variables
 }
