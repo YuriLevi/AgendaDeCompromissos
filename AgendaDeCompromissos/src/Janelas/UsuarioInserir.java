@@ -5,6 +5,8 @@
  */
 package Janelas;
 
+import BD.GerenciadorBD;
+import Tipos.Usuario;
 import java.util.Random;
 
 /**
@@ -91,17 +93,14 @@ public class UsuarioInserir extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonInseirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonInseirActionPerformed
+              
+      Usuario uInserir = new Usuario();
+     
+      uInserir.setLogin(jTextFieldUsuarioILogin.getText());
+      uInserir.setSenha(jTextFieldUsuarioISenha.getText());
         
-      Random r = new Random();
+      GerenciadorBD.inserirUusuario(uInserir);
       
-      String loginUsuario, senhaUsuario;
-      int min = 0, max = 50, id ;
-      
-      loginUsuario = jTextFieldUsuarioILogin.getText();
-      senhaUsuario = jTextFieldUsuarioISenha.getText();
-      id = r.nextInt(max - min);
-        
-        
     }//GEN-LAST:event_jButtonInseirActionPerformed
 
 

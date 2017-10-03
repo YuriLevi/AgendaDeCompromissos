@@ -13,7 +13,7 @@ public class Usuario {
     
     
  //Set   
-    public void setlogin(String newLogin){
+    public void setLogin(String newLogin){
         
         login = newLogin;
       
@@ -25,7 +25,7 @@ public class Usuario {
       
     }
     
-    public void setID(int newID){
+    public void setId(int newID){
         
         id = newID;
       
@@ -44,11 +44,10 @@ public class Usuario {
         return senha;
     }
     
-    public int getID(){
+    public int getId(){
         
         return id;
     }
     
    
-    
 }

@@ -6,6 +6,7 @@
 package BD;
 
 import Tipos.Compromisso;
+import Tipos.Usuario;
 
 /**
  *
@@ -26,12 +27,23 @@ public class testador {
         cInserir1.setData("2017/05/25");      
         cInserir1.setInfo("vamo zuaaar"); 
         
+        
+        
        //GerenciadorBD.inserirCompromisso(cInserir1);
        //GerenciadorBD.listarUltimos();
        //GerenciadorBD.listarNomes("luide");
-       GerenciadorBD.listarDatas(data);
+       //GerenciadorBD.listarDatas(data);
        
         //GerenciadorBD.alterarCompromisso(cInserir1, data, nomeM);
+        
+        Usuario uInserir2 = new Usuario();
+        
+        uInserir2.setLogin("yuri");
+        uInserir2.setSenha("123");
+        
+        GerenciadorBD.inserirUusuario(uInserir2);
+        GerenciadorBD.listarUsuarioTodos();
+        
        
        
     }

@@ -3,6 +3,7 @@ package BD;
 
 
 import Tipos.Compromisso;
+import Tipos.Usuario;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -19,7 +20,7 @@ public class SQLiteJDBCD {
         
         try {
             
-            String url = "jdbc:sqlite:BDBeta5.db";
+            String url = "jdbc:sqlite:BDBeta7.db";
             
             conn = DriverManager.getConnection(url);
                      
@@ -173,7 +174,7 @@ public class SQLiteJDBCD {
     public  ArrayList<Compromisso> selecionaCompromissoUltimos () {
         
         String sql = "SELECT id, nome,data,hora,info "
-                     + "FROM compromisso ORDER BY data ASC;";
+                     + "FROM compromisso ;";
         
         try {
             
@@ -285,22 +286,14 @@ public class SQLiteJDBCD {
         
     }
     
-    
-    
-    
-    
-    
-   
-
    
     //Usuario
-    public void criaTabelaUsuario (Connection conn) {
+    public void criaTabelaUsuario () {
         
         String sql = "CREATE TABLE IF NOT EXISTS usuario (";
                 sql += "	id integer PRIMARY KEY AUTOINCREMENT,";
                 sql += "	login text NOT NULL,";
-                sql += "	senha text NOT NULL,";
-                
+                sql += "	senha text NOT NULL";
                 sql += ");";
         
         try {
@@ -313,15 +306,15 @@ public class SQLiteJDBCD {
         }
     }
     
-    public void inserirUsuario (Connection conn, String nome, String senha) {
-        String sql = "INSERT INTO compromisso VALUES($next_id,?,?)";
+    public void inserirUsuario (Usuario iuUsuario) {
+        
+        String sql = "INSERT INTO usuario VALUES($next_id,?,?)";
  
         try {
                 PreparedStatement pstmt = conn.prepareStatement(sql); 
-                
-                
-                pstmt.setString(2, nome);
-                pstmt.setString(3, senha);
+
+                pstmt.setString(2, iuUsuario.getLogin());
+                pstmt.setString(3, iuUsuario.getSenha());
                 
                 pstmt.executeUpdate();
                 
@@ -330,10 +323,10 @@ public class SQLiteJDBCD {
         }
     }
      
-    public void  selecionaDadosUsuario (Connection conn) {
+    public ArrayList<Usuario> selecionaDadosUsuarioTodos() {
         
-        String sql = "SELECT id, nome,senha "
-                     + "FROM usuario';";
+        String sql = "SELECT id, login"
+                     + "FROM usuario;";
         
         try {
             
@@ -341,18 +334,29 @@ public class SQLiteJDBCD {
             
             ResultSet rs  = comandoSql.executeQuery(sql);
             
-            // loop no resultado
+            ArrayList<Usuario> lista = new ArrayList<Usuario>();
+            
             while (rs.next()) {
-                
-                System.out.println(rs.getInt("id") +  "\t" +
-                                   rs.getString("nome") + "\t" +
-                                   rs.getString("data") + "\t" +  
-                                   rs.getString("hora") + "\t" +  
-                                   rs.getString("info"));
+                Usuario u = new Usuario();
+                    
+                    u.setId(rs.getInt("id"));
+                    u.setLogin(rs.getString("login"));
+                    
+                    
+                                   
+                    lista.add(u);
             }
+            
+                comandoSql.close();
+                
+                return lista;
+            
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
+        
+        return null;
+        
     }
     
 }

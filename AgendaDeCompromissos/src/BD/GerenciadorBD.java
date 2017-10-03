@@ -1,6 +1,7 @@
 package BD;
 
 import Tipos.Compromisso;
+import Tipos.Usuario;
 import java.sql.Connection;
 import java.util.ArrayList;
 
@@ -13,7 +14,7 @@ public class GerenciadorBD {
     
    static SQLiteJDBCD banco = new SQLiteJDBCD();
     
-        
+    //Compromisso    
     public  static void inserirCompromisso(Compromisso compromissoBD){
         
         banco.connect();
@@ -43,7 +44,6 @@ public class GerenciadorBD {
         
         
     }
-    
     
     public static  ArrayList<Compromisso> listarUltimos(){
         
@@ -112,6 +112,37 @@ public class GerenciadorBD {
         
     }
             
+    //Usuário
+    public static void inserirUusuario(Usuario usuarioGBD){
+        
+        banco.connect();
+        banco.criaTabelaUsuario();
+        banco.inserirUsuario(usuarioGBD);
+        //banco.selecionaDadosUsuarioTodos();
+        banco.closeConnect();
+        
+        
+    }
+    
+    public static  ArrayList<Usuario> listarUsuarioTodos(){
+        
+        ArrayList<Usuario> GBDLista = new ArrayList<Usuario>();
+        banco.connect();
+        
+        GBDLista = banco.selecionaDadosUsuarioTodos();
+    
+        for(int i=0;i<GBDLista.size(); i++){
+            
+            System.out.println("Id: "+ GBDLista.get(i).getId()+ "  Nome: " + GBDLista.get(i).getLogin()+  "\n\n"); 
+        }
+    
+        banco.closeConnect();
+        
+        return GBDLista;
+        
+        
+    }
+    
     
     
 }
