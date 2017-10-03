@@ -38,10 +38,10 @@
                               <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="jTextFieldNomeCompromisso" max="32767" attributes="0"/>
-                              <Component id="jDateChooserDataCompromisso" alignment="0" pref="101" max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="jTextFieldNomeCompromisso" min="-2" pref="101" max="-2" attributes="0"/>
                               <Component id="jFormattedTextFieldHoraCompromisso" alignment="0" min="-2" pref="43" max="-2" attributes="0"/>
+                              <Component id="jDateChooserDataCompromisso" alignment="0" min="-2" pref="119" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
@@ -80,7 +80,7 @@
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="jButtonInserirCompromisso" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="14" max="32767" attributes="0"/>
+              <EmptySpace pref="18" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>

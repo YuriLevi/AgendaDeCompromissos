@@ -5,6 +5,14 @@
  */
 package Janelas;
 
+import BD.GerenciadorBD;
+import Tipos.Compromisso;
+import java.util.ArrayList;
+import javax.swing.DefaultListModel;
+
+import java.text.SimpleDateFormat;
+import java.text.DateFormat;
+
 /**
  *
  * @author Rizzadinha
@@ -33,17 +41,18 @@ public class CompromissoListar extends javax.swing.JInternalFrame {
         jLabel1 = new javax.swing.JLabel();
         jDateChooserListarData = new com.toedter.calendar.JDateChooser();
         jToggleButtonListarData = new javax.swing.JToggleButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jListListarData = new javax.swing.JList<>();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTextAreaDatas = new javax.swing.JTextArea();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jTextFieldListarNome = new javax.swing.JTextField();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jListListarNome = new javax.swing.JList<>();
         jToggleButtonListarNome = new javax.swing.JToggleButton();
-        jPanel4 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
+        jTextAreaNomes = new javax.swing.JTextArea();
+        jPanel4 = new javax.swing.JPanel();
+        jButtonUListar = new javax.swing.JButton();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        jTextAreaUltimos = new javax.swing.JTextArea();
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -62,8 +71,15 @@ public class CompromissoListar extends javax.swing.JInternalFrame {
         jLabel1.setText("Data:");
 
         jToggleButtonListarData.setText("Listar");
+        jToggleButtonListarData.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButtonListarDataActionPerformed(evt);
+            }
+        });
 
-        jScrollPane1.setViewportView(jListListarData);
+        jTextAreaDatas.setColumns(20);
+        jTextAreaDatas.setRows(5);
+        jScrollPane2.setViewportView(jTextAreaDatas);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -71,16 +87,17 @@ public class CompromissoListar extends javax.swing.JInternalFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jDateChooserListarData, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jToggleButtonListarData, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(93, 93, 93))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(22, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 451, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(37, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jScrollPane2)
+                        .addContainerGap())
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jDateChooserListarData, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 201, Short.MAX_VALUE)
+                        .addComponent(jToggleButtonListarData, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(93, 93, 93))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -91,8 +108,8 @@ public class CompromissoListar extends javax.swing.JInternalFrame {
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jDateChooserListarData, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -100,9 +117,16 @@ public class CompromissoListar extends javax.swing.JInternalFrame {
 
         jLabel2.setText("Nome:");
 
-        jScrollPane2.setViewportView(jListListarNome);
-
         jToggleButtonListarNome.setText("Listar");
+        jToggleButtonListarNome.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButtonListarNomeActionPerformed(evt);
+            }
+        });
+
+        jTextAreaNomes.setColumns(20);
+        jTextAreaNomes.setRows(5);
+        jScrollPane3.setViewportView(jTextAreaNomes);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -110,16 +134,17 @@ public class CompromissoListar extends javax.swing.JInternalFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextFieldListarNome, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jToggleButtonListarNome, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(202, 202, 202))
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 455, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(37, Short.MAX_VALUE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jScrollPane3)
+                        .addContainerGap())
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldListarNome, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 101, Short.MAX_VALUE)
+                        .addComponent(jToggleButtonListarNome, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(202, 202, 202))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -129,30 +154,45 @@ public class CompromissoListar extends javax.swing.JInternalFrame {
                     .addComponent(jLabel2)
                     .addComponent(jTextFieldListarNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jToggleButtonListarNome))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 132, Short.MAX_VALUE)
+                .addGap(22, 22, 22))
         );
 
         jTabbedPane1.addTab("Por Nome", jPanel2);
 
-        jScrollPane3.setViewportView(jList1);
+        jButtonUListar.setText("Listar");
+        jButtonUListar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonUListarActionPerformed(evt);
+            }
+        });
+
+        jTextAreaUltimos.setColumns(20);
+        jTextAreaUltimos.setRows(5);
+        jScrollPane4.setViewportView(jTextAreaUltimos);
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(195, 195, 195)
+                .addComponent(jButtonUListar, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(223, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 476, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addComponent(jScrollPane4)
+                .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButtonUListar)
+                .addContainerGap(16, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Últimos", jPanel4);
@@ -171,22 +211,71 @@ public class CompromissoListar extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButtonUListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonUListarActionPerformed
+        
+        ArrayList<Compromisso> ultimos = new ArrayList<Compromisso>();
+        
+        ultimos = GerenciadorBD.listarUltimos();
+        
+        for(int i = 0; i < ultimos.size(); i++){
+            
+            jTextAreaUltimos.setText( jTextAreaUltimos.getText() + "Id: "+ ultimos.get(i).getId() + "  Nome: " + ultimos.get(i).getNome() + "  Hora:  " + ultimos.get(i).getHora() + "  Data: " + ultimos.get(i).getData()+ "  Info: " + ultimos.get(i).getInfo() + "\n\n"); 
+        
+        }
+        
+        
+        
+    }//GEN-LAST:event_jButtonUListarActionPerformed
+
+    private void jToggleButtonListarNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButtonListarNomeActionPerformed
+        
+        ArrayList<Compromisso> ultimos = new ArrayList<Compromisso>();
+        
+        ultimos = GerenciadorBD.listarNomes(jTextFieldListarNome.getText());
+        
+        for(int i = 0; i < ultimos.size(); i++){
+            
+            jTextAreaNomes.setText( jTextAreaNomes.getText() + "Id: "+ ultimos.get(i).getId() + "  Nome: " + ultimos.get(i).getNome() + "  Hora:  " + ultimos.get(i).getHora() + "  Data: " + ultimos.get(i).getData()+ "  Info: " + ultimos.get(i).getInfo() + "\n\n"); 
+        
+        }   
+        
+    }//GEN-LAST:event_jToggleButtonListarNomeActionPerformed
+
+    private void jToggleButtonListarDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButtonListarDataActionPerformed
+       
+        ArrayList<Compromisso> ultimos = new ArrayList<Compromisso>();
+        
+        DateFormat dataFomatador = new SimpleDateFormat("yyyy/MM/dd"); 
+        
+        
+        ultimos = GerenciadorBD.listarDatas(dataFomatador.format(jDateChooserListarData.getDate()));
+        
+        for(int i = 0; i < ultimos.size(); i++){
+            
+            jTextAreaDatas.setText( jTextAreaDatas.getText() + "Id: "+ ultimos.get(i).getId() + "  Nome: " + ultimos.get(i).getNome() + "  Hora:  " + ultimos.get(i).getHora() + "  Data: " + ultimos.get(i).getData()+ "  Info: " + ultimos.get(i).getInfo() + "\n\n"); 
+        
+        }   
+        
+        
+    }//GEN-LAST:event_jToggleButtonListarDataActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonUListar;
     private com.toedter.calendar.JDateChooser jDateChooserListarData;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JList<String> jList1;
-    private javax.swing.JList<String> jListListarData;
-    private javax.swing.JList<String> jListListarNome;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTextArea jTextAreaDatas;
+    private javax.swing.JTextArea jTextAreaNomes;
+    private javax.swing.JTextArea jTextAreaUltimos;
     private javax.swing.JTextField jTextFieldListarNome;
     private javax.swing.JToggleButton jToggleButtonListarData;
     private javax.swing.JToggleButton jToggleButtonListarNome;

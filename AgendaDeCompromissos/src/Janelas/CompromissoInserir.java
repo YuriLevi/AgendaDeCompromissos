@@ -1,9 +1,13 @@
 package Janelas;
 
+import BD.GerenciadorBD;
 import Menu.*;
+import DAO.*;
+import Tipos.Compromisso;
 
 import java.text.SimpleDateFormat;
 import java.text.DateFormat;
+
 
 
 /*
@@ -90,10 +94,10 @@ public class CompromissoInserir extends javax.swing.JInternalFrame {
                                 .addComponent(jLabel1)
                                 .addComponent(jLabel3))
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jTextFieldNomeCompromisso)
-                                .addComponent(jDateChooserDataCompromisso, javax.swing.GroupLayout.DEFAULT_SIZE, 101, Short.MAX_VALUE)
-                                .addComponent(jFormattedTextFieldHoraCompromisso, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jTextFieldNomeCompromisso, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jFormattedTextFieldHoraCompromisso, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jDateChooserDataCompromisso, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGroup(layout.createSequentialGroup()
                             .addComponent(jLabel4)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -121,7 +125,7 @@ public class CompromissoInserir extends javax.swing.JInternalFrame {
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButtonInserirCompromisso)
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         getAccessibleContext().setAccessibleDescription("");
@@ -130,17 +134,18 @@ public class CompromissoInserir extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonInserirCompromissoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonInserirCompromissoActionPerformed
+        
         String nome, hora,data, info;
-        int x = 0;
+        Compromisso cInserir = new Compromisso();
         
         DateFormat dataFomatador = new SimpleDateFormat("yyyy/MM/dd");        
         
-        nome = jTextFieldNomeCompromisso.getText();
-        hora = jFormattedTextFieldHoraCompromisso.getText();
-        data = dataFomatador.format(jDateChooserDataCompromisso.getDate());      
-        info = jTextAreaInfoCompromisso.getText();        
+        cInserir.setNome(jTextFieldNomeCompromisso.getText());
+        cInserir.setHora(jFormattedTextFieldHoraCompromisso.getText());
+        cInserir.setData(dataFomatador.format(jDateChooserDataCompromisso.getDate()));      
+        cInserir.setInfo(jTextAreaInfoCompromisso.getText());        
         
-        
+       GerenciadorBD.inserirCompromisso(cInserir);
         
     }//GEN-LAST:event_jButtonInserirCompromissoActionPerformed
 
