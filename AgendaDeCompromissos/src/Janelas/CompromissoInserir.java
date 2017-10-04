@@ -2,7 +2,6 @@ package Janelas;
 
 import BD.GerenciadorBD;
 import Menu.*;
-import DAO.*;
 import Tipos.Compromisso;
 
 import java.text.SimpleDateFormat;
