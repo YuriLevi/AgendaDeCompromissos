@@ -28,7 +28,7 @@ public class AuxCompromissoUsuario {
    
     public static void setSenhaUC(String newSenhaUC){
         
-        senhaUC = senhaUC;
+        senhaUC = newSenhaUC;
         
     }
     
@@ -44,7 +44,7 @@ public class AuxCompromissoUsuario {
         
     }
     
-    public static String getsenhaUC(){
+    public static String getSenhaUC(){
         
         return senhaUC;
         

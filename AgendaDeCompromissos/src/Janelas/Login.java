@@ -1,5 +1,7 @@
 
 package Janelas;
+import BD.GerenciadorBD;
+import Tipos.Usuario;
 import java.util.Random;
 
 /**
@@ -79,10 +81,14 @@ public class Login extends javax.swing.JInternalFrame {
 
     private void jButtonLogarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLogarActionPerformed
         
-      String  lLogin = jTextFieldLogin.getText(), lSenha = jTextFieldSenha.getText();
+      Usuario aux = GerenciadorBD.auxAlterarU(jTextFieldLogin.getText(), jTextFieldSenha.getText());
       
-      AuxCompromissoUsuario.setNomeUC(lLogin);
-      AuxCompromissoUsuario.setSenhaUC(lSenha);
+      AuxCompromissoUsuario.setIdUC(aux.getId()); 
+      AuxCompromissoUsuario.setNomeUC(jTextFieldLogin.getText());
+      AuxCompromissoUsuario.setSenhaUC(jTextFieldSenha.getText());
+      
+      System.out.println("senha: " + jTextFieldSenha.getText());
+      System.out.println("\n id: " + AuxCompromissoUsuario.getIdUC() + " login: " +AuxCompromissoUsuario.getNomeUC() + " senha: " + AuxCompromissoUsuario.getSenhaUC());
       
     }//GEN-LAST:event_jButtonLogarActionPerformed
 
