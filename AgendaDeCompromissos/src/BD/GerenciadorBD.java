@@ -112,7 +112,9 @@ public class GerenciadorBD {
         
     }
             
-    //Usuário
+    
+
+//Usuário
     public static void inserirUusuario(Usuario usuarioGBD){
         
         banco.connect();
@@ -121,6 +123,42 @@ public class GerenciadorBD {
         
         banco.closeConnect();
         
+        
+    }
+    
+    public static void alterarUsuario(Usuario usuarioGBD, String loginGBD, String senhaGBD){
+        
+        banco.connect();
+        
+        banco.alterarUsuario(usuarioGBD, loginGBD, senhaGBD);
+        
+        banco.closeConnect();
+        
+    }
+    
+    public static void deletarUsuario(String loginGBD,String senhaGBD){
+        
+        banco.connect();
+        
+        banco.deletarUsuario(loginGBD, senhaGBD);
+        
+        banco.closeConnect();
+        
+        
+    }
+    
+    
+    public static Usuario auxAlterarU(String loginGBD, String senhaGBD){
+  
+        banco.connect();
+        
+        Usuario uGBD = banco.selecionaUsuario(loginGBD, senhaGBD);
+    
+        banco.closeConnect();
+        
+        System.out.println( " nome:" + uGBD.getLogin()+" senha: " + uGBD.getSenha());
+        
+        return uGBD; 
         
     }
     

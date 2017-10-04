@@ -359,5 +359,84 @@ public class SQLiteJDBCD {
         
     }
     
-}
+    public  Usuario selecionaUsuario(String login, String senha) {
+        
+        String sql = "SELECT id, login,senha "
+                     + "FROM usuario WHERE login = ? AND senha = ?;";
+        
+        try {
+            
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            
+            pstmt.setString(1, login);
+            pstmt.setString(2, senha);
+            
+            ResultSet rs  = pstmt.executeQuery();
+            
+            
+            
+            while (rs.next()) {
+                Usuario u = new Usuario();
+                    
+                    u.setId(rs.getInt("id"));
+                    u.setLogin(rs.getString("login"));
+                    u.setSenha(rs.getString("senha"));
+                    
+                                   
+                    return u;
+            }
+            
+                pstmt.close();
+                
+                
+            
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        
+        return null;
+    } 
+    
+    public void deletarUsuario(String aLogin,String aSenha){
+                            
+        String sql = "DELETE FROM usuario WHERE login = ? AND senha = ?";
+                            
+  
+        try {
+                PreparedStatement pstmt = conn.prepareStatement(sql); 
+                
+                pstmt.setString(1, aLogin);
+                pstmt.setString(2, aSenha);
+                                       
+              
+                pstmt.executeUpdate();
+                
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+    
+    public void alterarUsuario(Usuario auUsuario,String aLogin, String aSenha){
+        
+        String sql = "UPDATE usuario SET login = ?,";
+               sql+= " senha = ?";               
+               sql+= " WHERE login = ? AND senha = ?";
+              
+        try {
+                PreparedStatement pstmt = conn.prepareStatement(sql); 
+                
+                pstmt.setString(1, auUsuario.getLogin());
+                pstmt.setString(2, auUsuario.getSenha());
+                
+                pstmt.setString(3, aLogin);
+                pstmt.setString(4, aSenha);
+                
+                pstmt.executeUpdate();
+                
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    
+    }
 
+}
