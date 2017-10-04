@@ -8,6 +8,10 @@ import Tipos.Compromisso;
 import java.text.SimpleDateFormat;
 import java.text.DateFormat;
 
+import java.math.BigInteger;
+import java.security.MessageDigest;
+
+
 
 
 /*
@@ -143,7 +147,8 @@ public class CompromissoInserir extends javax.swing.JInternalFrame {
         cInserir.setNome(jTextFieldNomeCompromisso.getText());
         cInserir.setHora(jFormattedTextFieldHoraCompromisso.getText());
         cInserir.setData(dataFomatador.format(jDateChooserDataCompromisso.getDate()));      
-        cInserir.setInfo(jTextAreaInfoCompromisso.getText());        
+        cInserir.setInfo(jTextAreaInfoCompromisso.getText());
+        cInserir.setIdFK(AuxCompromissoUsuario.getIdUC());
         
        GerenciadorBD.inserirCompromisso(cInserir);
         

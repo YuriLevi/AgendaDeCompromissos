@@ -1,8 +1,10 @@
 
 package Janelas;
 import BD.GerenciadorBD;
+import BD.MD5;
 import Tipos.Usuario;
 import java.util.Random;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -15,6 +17,8 @@ public class Login extends javax.swing.JInternalFrame {
      */
     public Login() {
         initComponents();
+        
+       
     }
 
     
@@ -28,6 +32,7 @@ public class Login extends javax.swing.JInternalFrame {
         jTextFieldSenha = new javax.swing.JTextField();
         jButtonLogar = new javax.swing.JButton();
 
+        setClosable(true);
         setTitle("Login");
 
         jLabel1.setText("Login:");
@@ -76,19 +81,38 @@ public class Login extends javax.swing.JInternalFrame {
                 .addContainerGap())
         );
 
-        pack();
+        setBounds(0, 0, 151, 177);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonLogarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLogarActionPerformed
+          
         
-      Usuario aux = GerenciadorBD.auxAlterarU(jTextFieldLogin.getText(), jTextFieldSenha.getText());
+        if(GerenciadorBD.checkLogin(jTextFieldLogin.getText(), MD5.md5Hash(jTextFieldSenha.getText()))){
+        
+        Usuario aux = GerenciadorBD.selecionaAlterarU(jTextFieldLogin.getText(), MD5.md5Hash(jTextFieldSenha.getText())); 
+        AuxCompromissoUsuario.setIdUC(aux.getId()); 
+        AuxCompromissoUsuario.setNomeUC(aux.getLogin());
+        AuxCompromissoUsuario.setSenhaUC(aux.getSenha());
+        
+        AuxCompromissoUsuario.setValida(1);
+        
+        JOptionPane.showMessageDialog(null, "Login efetuado com sucesso");
+        
+        this.dispose();
+        
+        }
+        else{
+          
+          JOptionPane.showMessageDialog(null, "Usuário não cadastrado ou login/senha incorretos");
+          AuxCompromissoUsuario.setValida(0);
+          
+        }
       
-      AuxCompromissoUsuario.setIdUC(aux.getId()); 
-      AuxCompromissoUsuario.setNomeUC(jTextFieldLogin.getText());
-      AuxCompromissoUsuario.setSenhaUC(jTextFieldSenha.getText());
+        
       
-      System.out.println("senha: " + jTextFieldSenha.getText());
-      System.out.println("\n id: " + AuxCompromissoUsuario.getIdUC() + " login: " +AuxCompromissoUsuario.getNomeUC() + " senha: " + AuxCompromissoUsuario.getSenhaUC());
+      
+      //System.out.println("senha: " + jTextFieldSenha.getText());
+      //System.out.println("\n id: " + AuxCompromissoUsuario.getIdUC() + " login: " +AuxCompromissoUsuario.getNomeUC() + " senha: " + AuxCompromissoUsuario.getSenhaUC());
       
     }//GEN-LAST:event_jButtonLogarActionPerformed
 

@@ -6,6 +6,7 @@
 package Janelas;
 
 import BD.GerenciadorBD;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -41,6 +42,7 @@ public class UsuarioRemover extends javax.swing.JInternalFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
 
+        setClosable(true);
         setTitle("Remover Usuario");
 
         jButtonRemover.setText("Remover");
@@ -86,8 +88,8 @@ public class UsuarioRemover extends javax.swing.JInternalFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(19, 19, 19)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabelID, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabelID, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabelLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel2)
                     .addComponent(jLabel3))
@@ -104,6 +106,11 @@ public class UsuarioRemover extends javax.swing.JInternalFrame {
     private void jButtonRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRemoverActionPerformed
         
         GerenciadorBD.deletarUsuario(AuxCompromissoUsuario.getNomeUC(), AuxCompromissoUsuario.getSenhaUC());
+        
+        AuxCompromissoUsuario.setValida(0);
+        
+        JOptionPane.showMessageDialog(null, "Deslogado com Sucesso");
+        this.dispose();
         
     }//GEN-LAST:event_jButtonRemoverActionPerformed
 

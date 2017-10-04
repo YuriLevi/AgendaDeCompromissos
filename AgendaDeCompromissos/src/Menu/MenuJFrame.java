@@ -1,12 +1,10 @@
 package Menu;
 
 
-import Janelas.CompromissoInserir;
-import Janelas.CompromissoAlterar;
-import Janelas.CompromissoListar;
-import Janelas.CompromissoRemover;
+
 import Janelas.*;
-import java.util.Random;
+
+import javax.swing.JOptionPane;
 
 
 
@@ -34,8 +32,7 @@ public class MenuJFrame extends javax.swing.JFrame {
         jDesktopPane.add(telaLogin);
         
         telaLogin.show();
-       
-        
+              
        
     }
 
@@ -193,57 +190,96 @@ public class MenuJFrame extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuItemCInserirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemCInserirActionPerformed
         
-        CompromissoInserir telaInserirC = new CompromissoInserir();
+       if(AuxCompromissoUsuario.getValida()==1){
         
-        jDesktopPane.add(telaInserirC);
+            CompromissoInserir telaInserirC = new CompromissoInserir();
         
-        telaInserirC.show();
+            jDesktopPane.add(telaInserirC);
         
+            telaInserirC.show();
+       }
+       else{
+       JOptionPane.showMessageDialog(null, "Necessário logar");
+       }
+       
     }//GEN-LAST:event_jMenuItemCInserirActionPerformed
 
     private void jMenuItemCAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemCAlterarActionPerformed
-        CompromissoAlterar telaAlterarC = new CompromissoAlterar();
         
-        jDesktopPane.add(telaAlterarC);
+        if(AuxCompromissoUsuario.getValida()==1){
         
-        telaAlterarC.show();
+            CompromissoAlterar telaAlterarC = new CompromissoAlterar();
+        
+            jDesktopPane.add(telaAlterarC);
+        
+            telaAlterarC.show();
+        }
+        else{
+        JOptionPane.showMessageDialog(null, "Necessário logar");
+        }
+        
     }//GEN-LAST:event_jMenuItemCAlterarActionPerformed
 
     private void jMenuItemCRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemCRemoverActionPerformed
-        CompromissoRemover telaRemoverC = new CompromissoRemover();
         
-        jDesktopPane.add(telaRemoverC);
+        if(AuxCompromissoUsuario.getValida()==1){
         
-        telaRemoverC.show();
+            CompromissoRemover telaRemoverC = new CompromissoRemover();
+        
+            jDesktopPane.add(telaRemoverC);
+        
+            telaRemoverC.show();    
+        }
+        else{
+        JOptionPane.showMessageDialog(null, "Necessário logar");
+        }
+        
     }//GEN-LAST:event_jMenuItemCRemoverActionPerformed
 
     private void jMenuItemCRelatoriosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemCRelatoriosActionPerformed
-        CompromissoListar telaListarC = new CompromissoListar();
         
-        jDesktopPane.add(telaListarC);
+        if(AuxCompromissoUsuario.getValida()==1){
         
-        telaListarC.show();
+            CompromissoListar telaListarC = new CompromissoListar();
+        
+            jDesktopPane.add(telaListarC);
+             
+            telaListarC.show();
+            
+        }
+        else{
+        JOptionPane.showMessageDialog(null, "Necessário logar");
+        }   
+            
     }//GEN-LAST:event_jMenuItemCRelatoriosActionPerformed
 
     private void jMenuItemLogarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemLogarActionPerformed
         
-        Login telaLogin = new Login();
+        if(AuxCompromissoUsuario.getValida() == 1){
+            JOptionPane.showMessageDialog(null, "Já esta Logado");
+        }
+        else{
+          
+            Login telaLogin = new Login();
         
-        jDesktopPane.add(telaLogin);
+            jDesktopPane.add(telaLogin);
         
-        telaLogin.show();
-        
+            telaLogin.show();
+        }
     }//GEN-LAST:event_jMenuItemLogarActionPerformed
 
     private void jMenuItemDesloginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemDesloginActionPerformed
         
+        AuxCompromissoUsuario.setValida(0);
         jDesktopPane.removeAll(); 
         jDesktopPane.show(false);
         jDesktopPane.show(true);
+        JOptionPane.showMessageDialog(null, "Deslogado com Sucesso");
         
     }//GEN-LAST:event_jMenuItemDesloginActionPerformed
 
@@ -259,31 +295,54 @@ public class MenuJFrame extends javax.swing.JFrame {
 
     private void jMenuItemUAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemUAlterarActionPerformed
         
-        UsuarioAlterar telaAlterar = new UsuarioAlterar();
+        if(AuxCompromissoUsuario.getValida()==1){
         
-        jDesktopPane.add(telaAlterar);
+            UsuarioAlterar telaAlterar = new UsuarioAlterar();
         
-        telaAlterar.show();
+            jDesktopPane.add(telaAlterar);
+        
+            telaAlterar.show();
+        }
+        else{
+        JOptionPane.showMessageDialog(null, "Necessário logar");
+        }  
         
         
     }//GEN-LAST:event_jMenuItemUAlterarActionPerformed
 
     private void jMenuItemURemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemURemoverActionPerformed
         
-        UsuarioRemover telaRemover = new UsuarioRemover();
+        if(AuxCompromissoUsuario.getValida()==1){
         
-        jDesktopPane.add(telaRemover);
+            UsuarioRemover telaRemover = new UsuarioRemover();
         
-        telaRemover.show();
+            jDesktopPane.add(telaRemover);
+        
+            telaRemover.show();
+            
+        }
+        else{
+        JOptionPane.showMessageDialog(null, "Necessário logar");
+        } 
         
     }//GEN-LAST:event_jMenuItemURemoverActionPerformed
 
     private void jMenuItemURelatoriosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemURelatoriosActionPerformed
-        UsuarioListar telaListar = new UsuarioListar();
         
-        jDesktopPane.add(telaListar);
+        if(AuxCompromissoUsuario.getValida()==1){
         
-        telaListar.show();
+            UsuarioListar telaListar = new UsuarioListar();
+        
+            jDesktopPane.add(telaListar);
+        
+            telaListar.show();
+            
+            
+        }
+        else{
+        JOptionPane.showMessageDialog(null, "Necessário logar");
+        } 
+        
     }//GEN-LAST:event_jMenuItemURelatoriosActionPerformed
 
     /**

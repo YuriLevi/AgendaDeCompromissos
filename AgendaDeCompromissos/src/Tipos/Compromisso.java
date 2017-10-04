@@ -13,7 +13,7 @@ package Tipos;
 public class Compromisso {
     
     private String nome,data,hora,info;
-    private int id;
+    private int id,idFK;
     
     
  //Set   
@@ -47,6 +47,12 @@ public class Compromisso {
         
     }
     
+    public void setIdFK(int newIdFK){
+        
+        idFK = newIdFK;
+        
+    }
+    
  //Get   
     public String getNome(){
         
@@ -71,6 +77,11 @@ public class Compromisso {
     public int getId(){
         
         return id;
+    }
+    
+    public int getIdFK(){
+        
+        return idFK;
     }
     
 }

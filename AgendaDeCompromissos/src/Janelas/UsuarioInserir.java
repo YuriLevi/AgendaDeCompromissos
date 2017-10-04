@@ -6,8 +6,10 @@
 package Janelas;
 
 import BD.GerenciadorBD;
+import BD.MD5;
 import Tipos.Usuario;
 import java.util.Random;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -39,6 +41,7 @@ public class UsuarioInserir extends javax.swing.JInternalFrame {
         jTextFieldUsuarioISenha = new javax.swing.JTextField();
         jButtonInseir = new javax.swing.JButton();
 
+        setClosable(true);
         setTitle("Inserir Usuario");
 
         jLabel1.setText("Login:");
@@ -94,13 +97,17 @@ public class UsuarioInserir extends javax.swing.JInternalFrame {
 
     private void jButtonInseirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonInseirActionPerformed
               
-      Usuario uInserir = new Usuario();
-     
-      uInserir.setLogin(jTextFieldUsuarioILogin.getText());
-      uInserir.setSenha(jTextFieldUsuarioISenha.getText());
-        
-      GerenciadorBD.inserirUusuario(uInserir);
+      if(GerenciadorBD.checkExistente(jTextFieldUsuarioILogin.getText())){
+          JOptionPane.showMessageDialog(null, "Usuario Existente");
+      }
+      else{
+        Usuario uInserir = new Usuario();
+        uInserir.setLogin(jTextFieldUsuarioILogin.getText());
+        uInserir.setSenha(MD5.md5Hash(jTextFieldUsuarioISenha.getText()));
+        System.out.println("senha: " + uInserir.getSenha());
       
+        GerenciadorBD.inserirUusuario(uInserir);
+      }
     }//GEN-LAST:event_jButtonInseirActionPerformed
 
 

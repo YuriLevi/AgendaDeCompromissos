@@ -1,7 +1,6 @@
 package BD;
 
 
-
 import Tipos.Compromisso;
 import Tipos.Usuario;
 import java.sql.Connection;
@@ -20,7 +19,7 @@ public class SQLiteJDBCD {
         
         try {
             
-            String url = "jdbc:sqlite:BDBeta7.db";
+            String url = "jdbc:sqlite:BDBeta12.db";
             
             conn = DriverManager.getConnection(url);
                      
@@ -50,7 +49,8 @@ public class SQLiteJDBCD {
                 sql += "	nome text NOT NULL,";
                 sql += "	data text NOT NULL,";
                 sql += "	hora text NOT NULL,";
-                sql += "	info text NOT NULL";         
+                sql += "	info text NOT NULL,";
+                sql += "	idFK int NOT NULL";
                 sql += ");";
         
         try {
@@ -65,7 +65,7 @@ public class SQLiteJDBCD {
     
     public void inserirCompromisso (Compromisso icCompromisso) {
         
-        String sql = "INSERT INTO compromisso VALUES($next_id,?,?,?,?)";
+        String sql = "INSERT INTO compromisso VALUES($next_id,?,?,?,?,?)";
   
         try {
                 PreparedStatement pstmt = conn.prepareStatement(sql); 
@@ -74,6 +74,7 @@ public class SQLiteJDBCD {
                 pstmt.setString(3, icCompromisso.getData());
                 pstmt.setString(4, icCompromisso.getHora());
                 pstmt.setString(5, icCompromisso.getInfo());
+                pstmt.setInt(6, icCompromisso.getIdFK());
                 
                 pstmt.executeUpdate();
                 
@@ -82,13 +83,13 @@ public class SQLiteJDBCD {
         }
     }
      
-    public void alterarCompromisso(Compromisso acCompromisso, String aData, String aNome){
+    public void alterarCompromisso(Compromisso acCompromisso, String aData, String aNome, int idFK){
         
         String sql = "UPDATE compromisso SET nome = ?,";
                sql+= " data = ?,";
                sql+= " hora = ?,";
                sql+= " info = ?";
-               sql+= " WHERE data = ? AND nome = ?";
+               sql+= " WHERE data = ? AND nome = ? AND idFK = ?";
               
   
         try {
@@ -101,6 +102,7 @@ public class SQLiteJDBCD {
                 
                 pstmt.setString(5,aData);
                 pstmt.setString(6, aNome);
+                pstmt.setInt(7, idFK);
                 
                 pstmt.executeUpdate();
                 
@@ -112,10 +114,10 @@ public class SQLiteJDBCD {
         
     }
     
-    public  Compromisso selecionaCompromissoAlterar(String nome, String data) {
+    public  Compromisso selecionaCompromissoAlterar(String nome, String data,int idFK ) {
         
         String sql = "SELECT id, nome,data,hora,info "
-                     + "FROM compromisso WHERE data = ?  AND nome = ?;";
+                     + "FROM compromisso WHERE data = ?  AND nome = ? AND idFK = ?;";
         
         try {
             
@@ -123,6 +125,7 @@ public class SQLiteJDBCD {
             
             pstmt.setString(1, data);
             pstmt.setString(2, nome);
+            pstmt.setInt(3, idFK);
             
             ResultSet rs  = pstmt.executeQuery();
             
@@ -152,9 +155,9 @@ public class SQLiteJDBCD {
         
     }
     
-    public void deletarCompromisso(String aData,String aNome){
+    public void deletarCompromisso(String aData,String aNome,int idFK){
                             
-        String sql = "DELETE FROM compromisso WHERE nome = ? AND data = ?";
+        String sql = "DELETE FROM compromisso WHERE nome = ? AND data = ? AND idFK = ?";
                             
   
         try {
@@ -162,6 +165,7 @@ public class SQLiteJDBCD {
                 
                 pstmt.setString(1, aNome);
                 pstmt.setString(2, aData);
+                pstmt.setInt(3, idFK);
                                        
               
                 pstmt.executeUpdate();
@@ -171,16 +175,18 @@ public class SQLiteJDBCD {
         }
     }
     
-    public  ArrayList<Compromisso> selecionaCompromissoUltimos () {
+    public  ArrayList<Compromisso> selecionaCompromissoUltimos (int idFK) {
         
-        String sql = "SELECT id, nome,data,hora,info "
-                     + "FROM compromisso ;";
+        String sql = "SELECT id, nome,data,hora,info,idFK "
+                     + "FROM compromisso WHERE idFK = ? ;";
         
         try {
             
-            Statement comandoSql = conn.createStatement();
+            PreparedStatement pstmt = conn.prepareStatement(sql);
             
-            ResultSet rs  = comandoSql.executeQuery(sql);
+            pstmt.setInt(1, idFK);
+                               
+            ResultSet rs  = pstmt.executeQuery();
             
             ArrayList<Compromisso> lista = new ArrayList<Compromisso>();
             
@@ -192,11 +198,12 @@ public class SQLiteJDBCD {
                     c.setData(rs.getString("data"));
                     c.setHora(rs.getString("hora"));
                     c.setInfo(rs.getString("info"));
+                    c.setIdFK(rs.getInt("idFK"));
                                    
                     lista.add(c);
             }
             
-                comandoSql.close();
+                pstmt.close();
                 
                 return lista;
             
@@ -208,16 +215,17 @@ public class SQLiteJDBCD {
         
     }
     
-    public  ArrayList<Compromisso> selecionaCompromissoNomes (String nome) {
+    public  ArrayList<Compromisso> selecionaCompromissoNomes (String nome, int idFK) {
         
         String sql = "SELECT id, nome,data,hora,info "
-                     + "FROM compromisso WHERE nome LIKE ? ;";
+                     + "FROM compromisso WHERE nome LIKE ? AND idFK = ? ;";
         
         try {
             
             PreparedStatement pstmt = conn.prepareStatement(sql);
             
             pstmt.setString(1, nome);
+            pstmt.setInt(2, idFK);
             
             ResultSet rs  = pstmt.executeQuery();
             
@@ -247,16 +255,17 @@ public class SQLiteJDBCD {
         
     }
     
-    public  ArrayList<Compromisso> selecionaCompromissoData(String data) {
+    public  ArrayList<Compromisso> selecionaCompromissoData(String data, int idFK) {
         
         String sql = "SELECT id, nome,data,hora,info "
-                     + "FROM compromisso WHERE data = ? ;";
+                     + "FROM compromisso WHERE data = ? AND idFK = ? ;";
         
         try {
             
             PreparedStatement pstmt = conn.prepareStatement(sql);
             
             pstmt.setString(1, data);
+            pstmt.setInt(2, idFK);
             
             ResultSet rs  = pstmt.executeQuery();
             
@@ -437,6 +446,82 @@ public class SQLiteJDBCD {
             System.out.println(e.getMessage());
         }
     
+    }
+    
+    public boolean validaUsuarioExistente(String login){
+        
+        String sql = "SELECT * "
+                     + "FROM usuario WHERE login = ?;";
+        
+        boolean check = false;
+        
+        try {
+            
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            
+            pstmt.setString(1, login);
+            
+            
+             
+            ResultSet rs  = pstmt.executeQuery();
+            
+            
+            
+            if (rs.next()) {
+                
+                check = true;
+                
+            }
+            
+                pstmt.close();
+                
+                
+            
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        
+        return check;
+        
+        
+    }
+    
+    public boolean validaLogin(String login, String senha){
+        
+        String sql = "SELECT * "
+                     + "FROM usuario WHERE login = ? AND senha = ?;";
+        
+        boolean check = false;
+        
+        try {
+            
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            
+            pstmt.setString(1, login);
+            pstmt.setString(2, senha);
+            
+             
+            ResultSet rs  = pstmt.executeQuery();
+            
+            
+            
+            if (rs.next()) {
+                
+                check = true;
+                
+            }
+            
+                pstmt.close();
+                
+                
+            
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        
+        return check;
+        
+        
     }
 
 }

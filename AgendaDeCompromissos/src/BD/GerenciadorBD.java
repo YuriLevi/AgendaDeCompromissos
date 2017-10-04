@@ -25,31 +25,50 @@ public class GerenciadorBD {
         
     }
     
-    public static void alterarCompromisso(Compromisso compromissoBD, String dataGBD, String nomeGBD){
+    public static void alterarCompromisso(Compromisso compromissoBD, String dataGBD, String nomeGBD,int idFKGBD){
         
         banco.connect();
         
-        banco.alterarCompromisso(compromissoBD, dataGBD, nomeGBD);
+        banco.alterarCompromisso(compromissoBD, dataGBD, nomeGBD, idFKGBD);
         
         banco.closeConnect();
     }
     
-    public static void deletarCompromisso(String dataGBD,String nomeGBD){
+    public static void deletarCompromisso(String dataGBD,String nomeGBD,int idFKGBD){
         
         banco.connect();
         
-        banco.deletarCompromisso(dataGBD, nomeGBD);
+        banco.deletarCompromisso(dataGBD, nomeGBD,idFKGBD);
         
         banco.closeConnect();
         
         
     }
     
-    public static  ArrayList<Compromisso> listarUltimos(){
+    public static  ArrayList<Compromisso> listarUltimos(int idFKGBD){
         
         ArrayList<Compromisso> GBDLista = new ArrayList<Compromisso>();
         banco.connect();
-        GBDLista = banco.selecionaCompromissoUltimos();
+        
+        GBDLista = banco.selecionaCompromissoUltimos(idFKGBD);
+    
+        for(int i=0;i<GBDLista.size(); i++){
+            
+            System.out.println("Id: "+ GBDLista.get(i).getId() + "  Nome: " + GBDLista.get(i).getNome() + "  Hora:  " + GBDLista.get(i).getHora() + "  Data: " + GBDLista.get(i).getData()+ "  Info: " + GBDLista.get(i).getInfo() + "  idfk: " + GBDLista.get(i).getIdFK()+"\n\n"); 
+        }
+    
+        banco.closeConnect();
+        
+        return GBDLista;
+        
+    }
+    
+    public static  ArrayList<Compromisso> listarNomes(String nomeGBD,int idFKGBD){
+        
+        ArrayList<Compromisso> GBDLista = new ArrayList<Compromisso>();
+        banco.connect();
+        
+        GBDLista = banco.selecionaCompromissoNomes(nomeGBD,idFKGBD);
     
         for(int i=0;i<GBDLista.size(); i++){
             
@@ -62,12 +81,12 @@ public class GerenciadorBD {
         
     }
     
-    public static  ArrayList<Compromisso> listarNomes(String nomeGBD){
+    public static  ArrayList<Compromisso> listarDatas(String dataGBD,int idFKGBD){
         
         ArrayList<Compromisso> GBDLista = new ArrayList<Compromisso>();
         banco.connect();
         
-        GBDLista = banco.selecionaCompromissoNomes(nomeGBD);
+        GBDLista = banco.selecionaCompromissoData(dataGBD,idFKGBD);
     
         for(int i=0;i<GBDLista.size(); i++){
             
@@ -80,30 +99,12 @@ public class GerenciadorBD {
         
     }
     
-    public static  ArrayList<Compromisso> listarDatas(String dataGBD){
-        
-        ArrayList<Compromisso> GBDLista = new ArrayList<Compromisso>();
-        banco.connect();
-        
-        GBDLista = banco.selecionaCompromissoData(dataGBD);
-    
-        for(int i=0;i<GBDLista.size(); i++){
-            
-            System.out.println("Id: "+ GBDLista.get(i).getId() + "  Nome: " + GBDLista.get(i).getNome() + "  Hora:  " + GBDLista.get(i).getHora() + "  Data: " + GBDLista.get(i).getData()+ "  Info: " + GBDLista.get(i).getInfo() + "\n\n"); 
-        }
-    
-        banco.closeConnect();
-        
-        return GBDLista;
-        
-    }
-    
-    public static  Compromisso auxAlterar(String nomeGBD, String dataGBD){
+    public static  Compromisso auxAlterar(String nomeGBD, String dataGBD, int idFKGBD){
        
         
         banco.connect();
         
-        Compromisso cGBD = banco.selecionaCompromissoAlterar(nomeGBD, dataGBD);
+        Compromisso cGBD = banco.selecionaCompromissoAlterar(nomeGBD, dataGBD, idFKGBD);
     
         banco.closeConnect();
         System.out.println("teste:" + cGBD.getNome());
@@ -146,9 +147,8 @@ public class GerenciadorBD {
         
         
     }
-    
-    
-    public static Usuario auxAlterarU(String loginGBD, String senhaGBD){
+      
+    public static Usuario selecionaAlterarU(String loginGBD, String senhaGBD){
   
         banco.connect();
         
@@ -181,6 +181,29 @@ public class GerenciadorBD {
         
     }
     
+    
+    public static boolean checkLogin(String loginGBD, String senhaGBD){
+        
+        banco.connect();
+       
+        boolean validaGBD = banco.validaLogin(loginGBD, senhaGBD);
+        
+        banco.closeConnect();
+        
+        return validaGBD;
+    }
+    
+    public static boolean checkExistente(String usuarioGBD){
+        
+        banco.connect();
+       
+        boolean validaGBD = banco.validaUsuarioExistente(usuarioGBD);
+        
+        banco.closeConnect();
+        
+        return validaGBD;
+        
+    }
     
     
 }

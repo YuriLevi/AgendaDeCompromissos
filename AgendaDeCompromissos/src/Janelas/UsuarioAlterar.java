@@ -52,6 +52,7 @@ public class UsuarioAlterar extends javax.swing.JInternalFrame {
 
         jButton1.setText("jButton1");
 
+        setClosable(true);
         setTitle("Altera Usuario");
 
         jLabel1.setText("Login:");

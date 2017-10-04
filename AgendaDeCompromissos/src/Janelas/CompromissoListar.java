@@ -215,7 +215,7 @@ public class CompromissoListar extends javax.swing.JInternalFrame {
         
         ArrayList<Compromisso> ultimos = new ArrayList<Compromisso>();
         
-        ultimos = GerenciadorBD.listarUltimos();
+        ultimos = GerenciadorBD.listarUltimos(AuxCompromissoUsuario.getIdUC());
         
         for(int i = 0; i < ultimos.size(); i++){
             
@@ -231,7 +231,7 @@ public class CompromissoListar extends javax.swing.JInternalFrame {
         
         ArrayList<Compromisso> ultimos = new ArrayList<Compromisso>();
         
-        ultimos = GerenciadorBD.listarNomes(jTextFieldListarNome.getText());
+        ultimos = GerenciadorBD.listarNomes(jTextFieldListarNome.getText(), AuxCompromissoUsuario.getIdUC());
         
         for(int i = 0; i < ultimos.size(); i++){
             
@@ -247,7 +247,7 @@ public class CompromissoListar extends javax.swing.JInternalFrame {
         
         DateFormat dataFomatador = new SimpleDateFormat("yyyy/MM/dd"); 
                 
-        ultimos = GerenciadorBD.listarDatas(dataFomatador.format(jDateChooserListarData.getDate()));
+        ultimos = GerenciadorBD.listarDatas(dataFomatador.format(jDateChooserListarData.getDate()),AuxCompromissoUsuario.getIdUC());
         
         for(int i = 0; i < ultimos.size(); i++){
             

@@ -193,7 +193,7 @@ public class CompromissoRemover extends javax.swing.JInternalFrame {
         ArrayList<String> nomes = new ArrayList<String>();
         DateFormat dataFomatador = new SimpleDateFormat("yyyy/MM/dd"); 
               
-        encontrado = GerenciadorBD.listarDatas(dataFomatador.format(jDateChooserRemover.getDate()));
+        encontrado = GerenciadorBD.listarDatas(dataFomatador.format(jDateChooserRemover.getDate()), AuxCompromissoUsuario.getIdUC());
         
         for(int i=0;i<encontrado.size();i++){
             
@@ -210,7 +210,7 @@ public class CompromissoRemover extends javax.swing.JInternalFrame {
         
         DateFormat dataFomatador = new SimpleDateFormat("yyyy/MM/dd"); 
         
-        Compromisso aC = GerenciadorBD.auxAlterar(jComboBoxRemover.getSelectedItem().toString(),dataFomatador.format(jDateChooserRemover.getDate()));       
+        Compromisso aC = GerenciadorBD.auxAlterar(jComboBoxRemover.getSelectedItem().toString(),dataFomatador.format(jDateChooserRemover.getDate()), AuxCompromissoUsuario.getIdUC());       
         
       
         jTextFieldNomeCompromissoAchadoRemover.setText(aC.getNome());
@@ -225,7 +225,7 @@ public class CompromissoRemover extends javax.swing.JInternalFrame {
         DateFormat dataFomatador = new SimpleDateFormat("yyyy/MM/dd");
         
         
-        GerenciadorBD.deletarCompromisso(dataFomatador.format(jDateChooserRemover.getDate()),jComboBoxRemover.getSelectedItem().toString());
+        GerenciadorBD.deletarCompromisso(dataFomatador.format(jDateChooserRemover.getDate()),jComboBoxRemover.getSelectedItem().toString(),AuxCompromissoUsuario.getIdUC());
         
         
     }//GEN-LAST:event_jToggleButtonCompromissoRemoverActionPerformed

@@ -11,15 +11,22 @@ package Janelas;
  */
 public class AuxCompromissoUsuario {
     
-    private static int idUC;
+    private static int idUC,valida;
     private static String nomeUC, senhaUC;
+    
+    
+    public static void setValida(int newValida){
+        
+        valida = newValida;
+        
+    }
     
     public static void setIdUC(int newIdUC){
         
         idUC = newIdUC;
         
     }
-    
+     
     public static void setNomeUC(String newNomeUC){
         
         nomeUC = newNomeUC;
@@ -30,6 +37,11 @@ public class AuxCompromissoUsuario {
         
         senhaUC = newSenhaUC;
         
+    }
+    
+    public static int getValida(){
+        
+        return valida;
     }
     
     public static int getIdUC(){

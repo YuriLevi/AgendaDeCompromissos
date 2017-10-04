@@ -35,6 +35,7 @@ public class UsuarioListar extends javax.swing.JInternalFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         jTextAreaListar = new javax.swing.JTextArea();
 
+        setClosable(true);
         setTitle("Listar Usuario");
 
         jButtonListar.setText("Listar");
