@@ -159,6 +159,11 @@ public class MenuJFrame extends javax.swing.JFrame {
         jMenuAjuda.setText("Ajuda");
 
         jMenuItemAInformacoes.setText("Sobre");
+        jMenuItemAInformacoes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemAInformacoesActionPerformed(evt);
+            }
+        });
         jMenuAjuda.add(jMenuItemAInformacoes);
 
         jMenuBar1.add(jMenuAjuda);
@@ -352,6 +357,16 @@ public class MenuJFrame extends javax.swing.JFrame {
         } 
         
     }//GEN-LAST:event_jMenuItemURelatoriosActionPerformed
+
+    private void jMenuItemAInformacoesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemAInformacoesActionPerformed
+     
+        
+        AjudaInformacoes telaInfo = new AjudaInformacoes();
+        
+            jDesktopPane.add(telaInfo);
+        
+            telaInfo.show();
+    }//GEN-LAST:event_jMenuItemAInformacoesActionPerformed
 
     /**
      * @param args the command line arguments

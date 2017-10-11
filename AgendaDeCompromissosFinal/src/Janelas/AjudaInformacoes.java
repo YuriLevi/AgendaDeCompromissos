@@ -16,6 +16,7 @@ public class AjudaInformacoes extends javax.swing.JInternalFrame {
      */
     public AjudaInformacoes() {
         initComponents();
+        this.setLocation(250, 100);
     }
 
     /**
@@ -36,7 +37,7 @@ public class AjudaInformacoes extends javax.swing.JInternalFrame {
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
 
-        setBorder(null);
+        setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         setClosable(true);
         setTitle("Sobre o Sistema");
 
@@ -92,7 +93,7 @@ public class AjudaInformacoes extends javax.swing.JInternalFrame {
                 .addComponent(jLabel7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel8)
-                .addContainerGap(67, Short.MAX_VALUE))
+                .addContainerGap(66, Short.MAX_VALUE))
         );
 
         pack();
