@@ -32,6 +32,7 @@ public class CompromissoInserir extends javax.swing.JInternalFrame {
      */
     public CompromissoInserir() {
         initComponents();
+        this.setLocation(250, 100);
     }
 
     /**

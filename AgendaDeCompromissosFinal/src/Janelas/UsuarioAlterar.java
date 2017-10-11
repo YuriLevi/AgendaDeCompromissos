@@ -28,6 +28,7 @@ public class UsuarioAlterar extends javax.swing.JInternalFrame {
         jLabelLogin.setText(AuxCompromissoUsuario.getNomeUC());       
         
         jTextFieldUsuarioALogin.setText(AuxCompromissoUsuario.getNomeUC());
+        this.setLocation(300, 200);
         
     }
 

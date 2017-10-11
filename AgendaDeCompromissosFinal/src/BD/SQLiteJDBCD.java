@@ -432,7 +432,7 @@ public class SQLiteJDBCD {
             
                 pstmt.close();
                 
-                
+                JOptionPane.showMessageDialog(null, "Buscando Usuários...");
             
         } catch (SQLException e) {
             System.out.println(e.getMessage());

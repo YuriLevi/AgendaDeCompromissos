@@ -24,6 +24,7 @@ public class CompromissoAlterar extends javax.swing.JInternalFrame {
      */
     public CompromissoAlterar() {
         initComponents();
+        this.setLocation(250, 100);
     }
 
     /**
@@ -213,14 +214,18 @@ public class CompromissoAlterar extends javax.swing.JInternalFrame {
             DateFormat dataFomatador = new SimpleDateFormat("yyyy/MM/dd"); 
 
             encontrado = GerenciadorBD.listarDatas(dataFomatador.format(jDateChooserAlterarE.getDate()),AuxCompromissoUsuario.getIdUC());
-
-            for(int i=0;i<encontrado.size();i++){
-
-                nomes.add(encontrado.get(i).getNome());
+          
+            if(encontrado.size() == 0){
+                JOptionPane.showMessageDialog(null, "Nenhum compromisso encontrado com esse nome");
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "Compromissos encontrado(s)");
+                for(int i=0;i<encontrado.size();i++)
+                    nomes.add(encontrado.get(i).getNome());
+      
+                jComboBoxCompromisso.setModel(new DefaultComboBoxModel(nomes.toArray()));
             
-            }       
-        
-            jComboBoxCompromisso.setModel(new DefaultComboBoxModel(nomes.toArray()));
+            }
         }  
         
     }//GEN-LAST:event_jToggleButtonEncontrarAlterarActionPerformed

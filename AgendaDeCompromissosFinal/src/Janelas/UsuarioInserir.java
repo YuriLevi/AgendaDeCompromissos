@@ -21,6 +21,7 @@ public class UsuarioInserir extends javax.swing.JInternalFrame {
      */
     public UsuarioInserir() {
         initComponents();
+        this.setLocation(300, 200);
         
         
     }

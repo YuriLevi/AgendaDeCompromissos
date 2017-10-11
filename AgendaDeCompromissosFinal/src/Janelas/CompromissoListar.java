@@ -33,6 +33,8 @@ public class CompromissoListar extends javax.swing.JInternalFrame {
         
         SimpleDateFormat formatador = new SimpleDateFormat ("yyyy/MM/dd");
         
+        this.setLocation(180, 100);
+        
          
     }
 
@@ -232,10 +234,16 @@ public class CompromissoListar extends javax.swing.JInternalFrame {
         
         ultimos = GerenciadorBD.listarUltimos(AuxCompromissoUsuario.getIdUC(), dataAtual);
         
-        for(int i = 0; i < ultimos.size(); i++){
-            
-            jTextAreaUltimos.setText( jTextAreaUltimos.getText() + "Id: "+ ultimos.get(i).getId() + "  Nome: " + ultimos.get(i).getNome() + "  Hora:  " + ultimos.get(i).getHora() + "  Data: " + ultimos.get(i).getData()+ "  Info: " + ultimos.get(i).getInfo() + "\n\n"); 
+        jTextAreaUltimos.setText(null);
         
+        if(ultimos.size() == 0){
+                JOptionPane.showMessageDialog(null, "Nenhum compromisso encontrado com esse nome");
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Compromissos encontrado(s)");
+        
+            for(int i = 0; i < ultimos.size(); i++)
+                jTextAreaUltimos.setText( jTextAreaUltimos.getText() + "Id: "+ ultimos.get(i).getId() + "  Nome: " + ultimos.get(i).getNome() + "  Hora:  " + ultimos.get(i).getHora() + "  Data: " + ultimos.get(i).getData()+ "  Info: " + ultimos.get(i).getInfo() + "\n\n");  
         }
         
         
@@ -257,11 +265,16 @@ public class CompromissoListar extends javax.swing.JInternalFrame {
             ArrayList<Compromisso> ultimos = new ArrayList<Compromisso>();
 
             ultimos = GerenciadorBD.listarNomes(jTextFieldListarNome.getText(), AuxCompromissoUsuario.getIdUC(),dataAtual);
-
-            for(int i = 0; i < ultimos.size(); i++){
-
-                jTextAreaNomes.setText( jTextAreaNomes.getText() + "Id: "+ ultimos.get(i).getId() + "  Nome: " + ultimos.get(i).getNome() + "  Hora:  " + ultimos.get(i).getHora() + "  Data: " + ultimos.get(i).getData()+ "  Info: " + ultimos.get(i).getInfo() + "\n\n"); 
-
+            
+            jTextAreaNomes.setText(null);
+            
+            if(ultimos.size() == 0){
+                JOptionPane.showMessageDialog(null, "Nenhum compromisso encontrado com esse nome");
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "Compromissos encontrado(s)");
+                for(int i = 0; i < ultimos.size(); i++)
+                    jTextAreaNomes.setText( jTextAreaNomes.getText() + "Id: "+ ultimos.get(i).getId() + "  Nome: " + ultimos.get(i).getNome() + "  Hora:  " + ultimos.get(i).getHora() + "  Data: " + ultimos.get(i).getData()+ "  Info: " + ultimos.get(i).getInfo() + "\n\n"); 
             }   
         }
         
@@ -281,11 +294,13 @@ public class CompromissoListar extends javax.swing.JInternalFrame {
 
             ultimos = GerenciadorBD.listarDatas(dataFomatador.format(jDateChooserListarData.getDate()),AuxCompromissoUsuario.getIdUC());
             
+            jTextAreaDatas.setText(null);
+            
             if(ultimos.size() == 0){
                 JOptionPane.showMessageDialog(null, "Nenhum compromisso encontrado nessa data");
             }
             else{
-                JOptionPane.showMessageDialog(null, "Compromissos encontrados");
+                JOptionPane.showMessageDialog(null, "Compromissos encontrado(s)");
                 for(int i = 0; i < ultimos.size(); i++)
                     jTextAreaDatas.setText( jTextAreaDatas.getText() + "Id: "+ ultimos.get(i).getId() + "  Nome: " + ultimos.get(i).getNome() + "  Hora:  " + ultimos.get(i).getHora() + "  Data: " + ultimos.get(i).getData()+ "  Info: " + ultimos.get(i).getInfo() + "\n\n"); 
             }    

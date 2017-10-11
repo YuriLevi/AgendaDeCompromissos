@@ -8,6 +8,7 @@ package Janelas;
 import BD.GerenciadorBD;
 import Tipos.Usuario;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -20,6 +21,7 @@ public class UsuarioListar extends javax.swing.JInternalFrame {
      */
     public UsuarioListar() {
         initComponents();
+        this.setLocation(300, 170);
     }
 
     /**
@@ -58,12 +60,12 @@ public class UsuarioListar extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(57, 57, 57)
-                        .addComponent(jButtonListar, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(14, Short.MAX_VALUE))
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(43, 43, 43)
+                        .addComponent(jButtonListar, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -84,10 +86,14 @@ public class UsuarioListar extends javax.swing.JInternalFrame {
         
         ultimos = GerenciadorBD.listarUsuarioTodos();
         
-        for(int i = 0; i < ultimos.size(); i++){
-            
-            jTextAreaListar.setText( jTextAreaListar.getText() + "Id: " + ultimos.get(i).getId() + "          Login: " + ultimos.get(i).getLogin() + "\n\n"); 
+        if(ultimos.size() == 0){
+                JOptionPane.showMessageDialog(null, "Nenhum compromisso encontrado com esse nome");
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Usuários encontrado(s)");
         
+            for(int i = 0; i < ultimos.size(); i++)
+                jTextAreaListar.setText( jTextAreaListar.getText() + "Id: " + ultimos.get(i).getId() + "          Login: " + ultimos.get(i).getLogin() + "\n\n");        
         }
         
         

@@ -25,6 +25,7 @@ public class UsuarioRemover extends javax.swing.JInternalFrame {
         
         jLabelLogin.setText(AuxCompromissoUsuario.getNomeUC());
         
+        this.setLocation(300, 200);
     }
 
     /**
@@ -112,7 +113,8 @@ public class UsuarioRemover extends javax.swing.JInternalFrame {
         
         JOptionPane.showMessageDialog(null, "Deslogado com Sucesso");
         this.dispose();
-        MenuJFrame.main(null);
+        
+        
         
     }//GEN-LAST:event_jButtonRemoverActionPerformed
 

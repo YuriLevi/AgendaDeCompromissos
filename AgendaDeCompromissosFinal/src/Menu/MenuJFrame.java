@@ -32,6 +32,7 @@ public class MenuJFrame extends javax.swing.JFrame {
         jDesktopPane.add(telaLogin);
         
         telaLogin.show();
+        
               
        
     }
@@ -196,6 +197,7 @@ public class MenuJFrame extends javax.swing.JFrame {
             CompromissoInserir telaInserirC = new CompromissoInserir();
         
             jDesktopPane.add(telaInserirC);
+            
         
             telaInserirC.show();
        }
@@ -264,8 +266,9 @@ public class MenuJFrame extends javax.swing.JFrame {
             Login telaLogin = new Login();
         
             jDesktopPane.add(telaLogin);
-        
+            
             telaLogin.show();
+            
         }
     }//GEN-LAST:event_jMenuItemLogarActionPerformed
 
@@ -312,8 +315,13 @@ public class MenuJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItemUAlterarActionPerformed
 
     private void jMenuItemURemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemURemoverActionPerformed
-        
+               
         if(AuxCompromissoUsuario.getValida()==1){
+            
+            jDesktopPane.removeAll(); 
+            jDesktopPane.show(false);
+            jDesktopPane.show(true);
+            
         
             UsuarioRemover telaRemover = new UsuarioRemover();
         

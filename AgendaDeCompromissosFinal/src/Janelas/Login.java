@@ -18,6 +18,9 @@ public class Login extends javax.swing.JInternalFrame {
     public Login() {
         initComponents();
         
+        this.setLocation(380, 200);
+        
+        
        
     }
 
