@@ -66,24 +66,24 @@ public class MenuJFrame extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Agenda de Compromissos");
-        setPreferredSize(new java.awt.Dimension(900, 700));
+        setMaximumSize(new java.awt.Dimension(900, 700));
         getContentPane().setLayout(null);
 
-        jDesktopPane.setPreferredSize(new java.awt.Dimension(900, 700));
+        jDesktopPane.setPreferredSize(new java.awt.Dimension(1920, 1080));
 
         javax.swing.GroupLayout jDesktopPaneLayout = new javax.swing.GroupLayout(jDesktopPane);
         jDesktopPane.setLayout(jDesktopPaneLayout);
         jDesktopPaneLayout.setHorizontalGroup(
             jDesktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 538, Short.MAX_VALUE)
+            .addGap(0, 900, Short.MAX_VALUE)
         );
         jDesktopPaneLayout.setVerticalGroup(
             jDesktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 341, Short.MAX_VALUE)
+            .addGap(0, 700, Short.MAX_VALUE)
         );
 
         getContentPane().add(jDesktopPane);
-        jDesktopPane.setBounds(0, 0, 900, 700);
+        jDesktopPane.setBounds(0, 0, 1920, 1080);
 
         jMenuCompromissos.setText("Compromissos");
 
@@ -186,7 +186,7 @@ public class MenuJFrame extends javax.swing.JFrame {
 
         setJMenuBar(jMenuBar1);
 
-        pack();
+        setSize(new java.awt.Dimension(916, 739));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -382,6 +382,7 @@ public class MenuJFrame extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
+        
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new MenuJFrame().setVisible(true);
