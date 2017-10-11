@@ -3,6 +3,9 @@ package Menu;
 
 
 import Janelas.*;
+import java.awt.Image;
+import java.awt.Graphics;
+import javax.swing.ImageIcon;
 
 import javax.swing.JOptionPane;
 
@@ -46,7 +49,15 @@ public class MenuJFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jDesktopPane = new javax.swing.JDesktopPane();
+        ImageIcon icon = new ImageIcon(getClass().getResource("/Menu/y.jpg"));
+        Image image = icon.getImage();
+        jDesktopPane = new javax.swing.JDesktopPane(){
+
+            public void paintComponent(Graphics g){
+                g.drawImage(image, 0,0,getWidth(),getHeight(),this);
+            }
+
+        };
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenuCompromissos = new javax.swing.JMenu();
         jMenuItemCInserir = new javax.swing.JMenuItem();
@@ -70,18 +81,6 @@ public class MenuJFrame extends javax.swing.JFrame {
         getContentPane().setLayout(null);
 
         jDesktopPane.setPreferredSize(new java.awt.Dimension(1920, 1080));
-
-        javax.swing.GroupLayout jDesktopPaneLayout = new javax.swing.GroupLayout(jDesktopPane);
-        jDesktopPane.setLayout(jDesktopPaneLayout);
-        jDesktopPaneLayout.setHorizontalGroup(
-            jDesktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 900, Short.MAX_VALUE)
-        );
-        jDesktopPaneLayout.setVerticalGroup(
-            jDesktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 700, Short.MAX_VALUE)
-        );
-
         getContentPane().add(jDesktopPane);
         jDesktopPane.setBounds(0, 0, 1920, 1080);
 
@@ -365,7 +364,7 @@ public class MenuJFrame extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if ("Metal".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
