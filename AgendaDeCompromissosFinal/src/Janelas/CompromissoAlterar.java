@@ -8,10 +8,14 @@ package Janelas;
 import BD.GerenciadorBD;
 import Tipos.Compromisso;
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -25,6 +29,8 @@ public class CompromissoAlterar extends javax.swing.JInternalFrame {
     public CompromissoAlterar() {
         initComponents();
         this.setLocation(250, 100);
+        
+        jDateChooserAlterarE.setDateFormatString("yyyy/MM/dd");
     }
 
     /**
@@ -53,9 +59,8 @@ public class CompromissoAlterar extends javax.swing.JInternalFrame {
         jToggleButtonCompromissoAlterar = new javax.swing.JToggleButton();
         jButtonSelecionar = new javax.swing.JButton();
         jComboBoxCompromisso = new javax.swing.JComboBox<>();
-        jFormattedTextData = new javax.swing.JFormattedTextField();
-        jLabel7 = new javax.swing.JLabel();
         jTextFieldHoraCompromissoAchadoAlterar = new javax.swing.JFormattedTextField();
+        jDateChooserAlterarS = new com.toedter.calendar.JDateChooser();
 
         jLabel1.setText("jLabel1");
 
@@ -102,15 +107,6 @@ public class CompromissoAlterar extends javax.swing.JInternalFrame {
         });
 
         try {
-            jFormattedTextData.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("####/##/##")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-        jFormattedTextData.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-
-        jLabel7.setText("YYYY/MM/DD");
-
-        try {
             jTextFieldHoraCompromissoAchadoAlterar.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##:##")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
@@ -123,9 +119,22 @@ public class CompromissoAlterar extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(15, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jDateChooserAlterarS, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(286, 286, 286))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jTextFieldHoraCompromissoAchadoAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jTextFieldNomeCompromissoAchadoAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel6)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -136,29 +145,13 @@ public class CompromissoAlterar extends javax.swing.JInternalFrame {
                                 .addComponent(jLabel3)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jDateChooserAlterarE, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jToggleButtonEncontrarAlterar))
-                                .addGap(57, 57, 57)
+                                    .addComponent(jToggleButtonEncontrarAlterar)
+                                    .addComponent(jDateChooserAlterarE, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(78, 78, 78)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jButtonSelecionar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jComboBoxCompromisso, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextFieldNomeCompromissoAchadoAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextFieldHoraCompromissoAchadoAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(88, 88, 88)))
-                        .addGap(11, 11, 11))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jFormattedTextData, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel7)
-                        .addGap(236, 236, 236))))
+                                    .addComponent(jComboBoxCompromisso, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGap(11, 11, 11))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -174,7 +167,7 @@ public class CompromissoAlterar extends javax.swing.JInternalFrame {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jDateChooserAlterarE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextFieldNomeCompromissoAchadoAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
@@ -184,20 +177,20 @@ public class CompromissoAlterar extends javax.swing.JInternalFrame {
                     .addComponent(jTextFieldHoraCompromissoAchadoAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(9, 9, 9)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addGap(45, 45, 45)
-                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jFormattedTextData, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel7))
-                        .addGap(9, 9, 9)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jToggleButtonCompromissoAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(34, 34, 34)))
-                .addContainerGap())
+                        .addGap(45, 45, 45))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel5)
+                                .addGap(45, 45, 45)
+                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(26, 26, 26)
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jDateChooserAlterarS, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap())))
         );
 
         pack();
@@ -231,26 +224,31 @@ public class CompromissoAlterar extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jToggleButtonEncontrarAlterarActionPerformed
 
     private void jButtonSelecionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSelecionarActionPerformed
-        
-        
+              
         DateFormat dataFomatador = new SimpleDateFormat("yyyy/MM/dd"); 
         
         Compromisso aC = GerenciadorBD.auxAlterar(jComboBoxCompromisso.getSelectedItem().toString(),dataFomatador.format(jDateChooserAlterarE.getDate()),AuxCompromissoUsuario.getIdUC());       
-        
-        System.out.println("teste:" + aC.getNome());
-        
+               
         jTextFieldNomeCompromissoAchadoAlterar.setText(aC.getNome());
-        jTextFieldHoraCompromissoAchadoAlterar.setText(aC.getHora());
-        jFormattedTextData.setText(aC.getData());
+        jTextFieldHoraCompromissoAchadoAlterar.setText(aC.getHora());     
         jTextAreaInfoCompromissoAchadoAlterar.setText(aC.getInfo());
-        
+               
+        try{
+            Date date = new SimpleDateFormat("yyyy/MM/dd").parse(aC.getData());
+            jDateChooserAlterarS.setDateFormatString("yyyy/MM/dd");
+            jDateChooserAlterarS.setDate(date);
+                 
+        }
+        catch (ParseException ex) {
+            Logger.getLogger(CompromissoAlterar.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
     }//GEN-LAST:event_jButtonSelecionarActionPerformed
 
     private void jToggleButtonCompromissoAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButtonCompromissoAlterarActionPerformed
+            
         
-        
-        if(jTextFieldNomeCompromissoAchadoAlterar.getText().equals("") || jTextFieldHoraCompromissoAchadoAlterar.getText().equals("  :  ") || jFormattedTextData.getText().equals("    /  /  ") || jTextAreaInfoCompromissoAchadoAlterar.getText().equals("")){
+        if(jTextFieldNomeCompromissoAchadoAlterar.getText().equals("") || jTextFieldHoraCompromissoAchadoAlterar.getText().equals("  :  ") || jDateChooserAlterarS.getDate() == null || jTextAreaInfoCompromissoAchadoAlterar.getText().equals("")){
             JOptionPane.showMessageDialog(null, "Por favor preencha os campos");
         }
         else{
@@ -259,7 +257,7 @@ public class CompromissoAlterar extends javax.swing.JInternalFrame {
 
             alterar.setNome(jTextFieldNomeCompromissoAchadoAlterar.getText());
             alterar.setHora(jTextFieldHoraCompromissoAchadoAlterar.getText());
-            alterar.setData(jFormattedTextData.getText());
+            alterar.setData(dataFomatador.format(jDateChooserAlterarS.getDate()));
             alterar.setInfo(jTextAreaInfoCompromissoAchadoAlterar.getText());
 
             GerenciadorBD.alterarCompromisso(alterar,dataFomatador.format(jDateChooserAlterarE.getDate()),jComboBoxCompromisso.getSelectedItem().toString(),AuxCompromissoUsuario.getIdUC());
@@ -275,14 +273,13 @@ public class CompromissoAlterar extends javax.swing.JInternalFrame {
     private com.toedter.calendar.JDateChooser jDateChooser1;
     private com.toedter.calendar.JDateChooser jDateChooser3;
     private com.toedter.calendar.JDateChooser jDateChooserAlterarE;
-    private javax.swing.JFormattedTextField jFormattedTextData;
+    private com.toedter.calendar.JDateChooser jDateChooserAlterarS;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextArea jTextAreaInfoCompromissoAchadoAlterar;
     private javax.swing.JTextField jTextField2;

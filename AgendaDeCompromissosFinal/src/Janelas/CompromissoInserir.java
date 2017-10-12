@@ -1,15 +1,9 @@
 package Janelas;
 
 import BD.GerenciadorBD;
-import Menu.*;
-
 import Tipos.Compromisso;
-
 import java.text.SimpleDateFormat;
 import java.text.DateFormat;
-
-import java.math.BigInteger;
-import java.security.MessageDigest;
 import javax.swing.JOptionPane;
 
 
@@ -33,6 +27,8 @@ public class CompromissoInserir extends javax.swing.JInternalFrame {
     public CompromissoInserir() {
         initComponents();
         this.setLocation(250, 100);
+        
+        jDateChooserDataCompromisso.setDateFormatString("yyyy/MM/dd");
     }
 
     /**

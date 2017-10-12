@@ -20,7 +20,7 @@ public class SQLiteJDBCD {
         
         try {
             
-            String url = "jdbc:sqlite:BDBeta13.db";
+            String url = "jdbc:sqlite:BDFinal.db";
             
             conn = DriverManager.getConnection(url);
                      
@@ -239,15 +239,15 @@ public class SQLiteJDBCD {
     public  ArrayList<Compromisso> selecionaCompromissoNomes (String nome, int idFK, String dataAtual) {
         
         String sql = "SELECT id, nome,data,hora,info "
-                     + "FROM compromisso WHERE nome LIKE ? AND idFK = ? AND data >= ? ;";
+                     + "FROM compromisso WHERE nome LIKE '%"+ nome +"%' AND idFK = ? AND data >= ? ;";
         
         try {
             
             PreparedStatement pstmt = conn.prepareStatement(sql);
             
-            pstmt.setString(1, nome);
-            pstmt.setInt(2, idFK);
-            pstmt.setString(3, dataAtual);
+            //pstmt.setString(1, nome);
+            pstmt.setInt(1, idFK);
+            pstmt.setString(2, dataAtual);
             
             ResultSet rs  = pstmt.executeQuery();
             

@@ -113,9 +113,7 @@ public class UsuarioRemover extends javax.swing.JInternalFrame {
         
         JOptionPane.showMessageDialog(null, "Deslogado com Sucesso");
         this.dispose();
-        
-        
-        
+                      
     }//GEN-LAST:event_jButtonRemoverActionPerformed
 
 

@@ -120,7 +120,6 @@ public class UsuarioInserir extends javax.swing.JInternalFrame {
           Usuario uInserir = new Usuario();
           uInserir.setLogin(jTextFieldUsuarioILogin.getText());
           uInserir.setSenha(MD5.md5Hash(jTextFieldUsuarioISenha.getText()));
-          System.out.println("senha: " + uInserir.getSenha());
 
           GerenciadorBD.inserirUusuario(uInserir);
           this.dispose();

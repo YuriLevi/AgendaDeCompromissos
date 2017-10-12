@@ -8,13 +8,9 @@ package Janelas;
 import BD.GerenciadorBD;
 import Tipos.Compromisso;
 import java.util.ArrayList;
-
 import java.util.Date;
 import java.text.SimpleDateFormat;
 import java.text.DateFormat; 
-
-import java.text.SimpleDateFormat;
-import java.text.DateFormat;
 import javax.swing.JOptionPane;
 
 /**
@@ -29,11 +25,9 @@ public class CompromissoListar extends javax.swing.JInternalFrame {
     public CompromissoListar() {
         initComponents();
         
-        Date data1 = new Date( );
-        
-        SimpleDateFormat formatador = new SimpleDateFormat ("yyyy/MM/dd");
-        
         this.setLocation(180, 100);
+        
+        jDateChooserListarData.setDateFormatString("yyyy/MM/dd");
         
          
     }
@@ -106,8 +100,8 @@ public class CompromissoListar extends javax.swing.JInternalFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jDateChooserListarData, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 201, Short.MAX_VALUE)
+                        .addComponent(jDateChooserListarData, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 188, Short.MAX_VALUE)
                         .addComponent(jToggleButtonListarData, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(93, 93, 93))))
         );
@@ -120,7 +114,7 @@ public class CompromissoListar extends javax.swing.JInternalFrame {
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jDateChooserListarData, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -236,14 +230,20 @@ public class CompromissoListar extends javax.swing.JInternalFrame {
         
         jTextAreaUltimos.setText(null);
         
-        if(ultimos.size() == 0){
+        if(ultimos.isEmpty()){
                 JOptionPane.showMessageDialog(null, "Nenhum compromisso encontrado com esse nome");
         }
         else{
             JOptionPane.showMessageDialog(null, "Compromissos encontrado(s)");
         
             for(int i = 0; i < ultimos.size(); i++)
-                jTextAreaUltimos.setText( jTextAreaUltimos.getText() + "Id: "+ ultimos.get(i).getId() + "  Nome: " + ultimos.get(i).getNome() + "  Hora:  " + ultimos.get(i).getHora() + "  Data: " + ultimos.get(i).getData()+ "  Info: " + ultimos.get(i).getInfo() + "\n\n");  
+                jTextAreaUltimos.setText( jTextAreaUltimos.getText() 
+                        + "Id: "+ ultimos.get(i).getId() 
+                        + "\nNome: " + ultimos.get(i).getNome() 
+                        + "\nHora: " + ultimos.get(i).getHora() 
+                        + "\nData: " + ultimos.get(i).getData()
+                        + "\nInfo: " + ultimos.get(i).getInfo() 
+                        + "\n\n");  
         }
         
         
@@ -274,7 +274,13 @@ public class CompromissoListar extends javax.swing.JInternalFrame {
             else{
                 JOptionPane.showMessageDialog(null, "Compromissos encontrado(s)");
                 for(int i = 0; i < ultimos.size(); i++)
-                    jTextAreaNomes.setText( jTextAreaNomes.getText() + "Id: "+ ultimos.get(i).getId() + "  Nome: " + ultimos.get(i).getNome() + "  Hora:  " + ultimos.get(i).getHora() + "  Data: " + ultimos.get(i).getData()+ "  Info: " + ultimos.get(i).getInfo() + "\n\n"); 
+                    jTextAreaNomes.setText( jTextAreaNomes.getText() 
+                            + "Id: "+ ultimos.get(i).getId() 
+                            + "\nNome: " + ultimos.get(i).getNome() 
+                            + "\nHora: " + ultimos.get(i).getHora() 
+                            + "\nData: " + ultimos.get(i).getData()
+                            + "\nInfo: " + ultimos.get(i).getInfo() 
+                            + "\n\n"); 
             }   
         }
         
@@ -296,13 +302,19 @@ public class CompromissoListar extends javax.swing.JInternalFrame {
             
             jTextAreaDatas.setText(null);
             
-            if(ultimos.size() == 0){
+            if(ultimos.isEmpty()){
                 JOptionPane.showMessageDialog(null, "Nenhum compromisso encontrado nessa data");
             }
             else{
                 JOptionPane.showMessageDialog(null, "Compromissos encontrado(s)");
                 for(int i = 0; i < ultimos.size(); i++)
-                    jTextAreaDatas.setText( jTextAreaDatas.getText() + "Id: "+ ultimos.get(i).getId() + "  Nome: " + ultimos.get(i).getNome() + "  Hora:  " + ultimos.get(i).getHora() + "  Data: " + ultimos.get(i).getData()+ "  Info: " + ultimos.get(i).getInfo() + "\n\n"); 
+                    jTextAreaDatas.setText( jTextAreaDatas.getText() 
+                            + "Id: "+ ultimos.get(i).getId() 
+                            + "\nNome: " + ultimos.get(i).getNome() 
+                            + "\nHora: " + ultimos.get(i).getHora() 
+                            + "\nData: " + ultimos.get(i).getData()
+                            + "\nInfo: " + ultimos.get(i).getInfo() 
+                            + "\n\n"); 
             }    
               
         }   

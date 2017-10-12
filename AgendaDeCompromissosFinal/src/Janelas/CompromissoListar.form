@@ -76,8 +76,8 @@
                           <Group type="102" attributes="0">
                               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jDateChooserListarData" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace pref="201" max="32767" attributes="0"/>
+                              <Component id="jDateChooserListarData" min="-2" pref="100" max="-2" attributes="0"/>
+                              <EmptySpace pref="188" max="32767" attributes="0"/>
                               <Component id="jToggleButtonListarData" min="-2" pref="88" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="93" max="-2" attributes="0"/>
                           </Group>
@@ -96,7 +96,7 @@
                               <Component id="jDateChooserListarData" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace pref="31" max="32767" attributes="0"/>
+                      <EmptySpace pref="39" max="32767" attributes="0"/>
                       <Component id="jScrollPane2" min="-2" pref="128" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>

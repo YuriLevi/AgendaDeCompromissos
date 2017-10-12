@@ -2,16 +2,20 @@
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
- */
+*/
 package Janelas;
 
 import BD.GerenciadorBD;
 import Tipos.Compromisso;
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -25,6 +29,8 @@ public class CompromissoRemover extends javax.swing.JInternalFrame {
     public CompromissoRemover() {
         initComponents();
         this.setLocation(250, 100);
+        
+        jDateChooserRemover.setDateFormatString("yyyy/MM/dd");
     }
 
     /**
@@ -49,9 +55,8 @@ public class CompromissoRemover extends javax.swing.JInternalFrame {
         jToggleButtonEncontrarRemover = new javax.swing.JToggleButton();
         jComboBoxRemover = new javax.swing.JComboBox<>();
         JButtonSelecionar = new javax.swing.JButton();
-        jFormattedTextData = new javax.swing.JFormattedTextField();
-        jLabel1 = new javax.swing.JLabel();
         jTextFieldHoraCompromissoAchadoRemover = new javax.swing.JFormattedTextField();
+        jDateChooserRemoverE = new com.toedter.calendar.JDateChooser();
 
         setClosable(true);
         setTitle("Remover Compromisso");
@@ -94,15 +99,6 @@ public class CompromissoRemover extends javax.swing.JInternalFrame {
         });
 
         try {
-            jFormattedTextData.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("####/##/##")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-        jFormattedTextData.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-
-        jLabel1.setText("YYYY/MM/DD");
-
-        try {
             jTextFieldHoraCompromissoAchadoRemover.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##:##")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
@@ -121,16 +117,16 @@ public class CompromissoRemover extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jDateChooserRemover, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(93, 93, 93)
+                                .addComponent(jDateChooserRemover, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(106, 106, 106)
                                 .addComponent(jComboBoxRemover, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jToggleButtonEncontrarRemover)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(JButtonSelecionar)
-                                .addGap(58, 58, 58))))
+                                .addGap(84, 84, 84))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -139,21 +135,16 @@ public class CompromissoRemover extends javax.swing.JInternalFrame {
                                     .addComponent(jLabel5))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jTextFieldNomeCompromissoAchadoRemover, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jFormattedTextData, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jLabel1))
-                                    .addComponent(jTextFieldHoraCompromissoAchadoRemover, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(jTextFieldHoraCompromissoAchadoRemover, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jTextFieldNomeCompromissoAchadoRemover, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jDateChooserRemoverE, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel6)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jToggleButtonCompromissoRemover)))
-                        .addGap(0, 2, Short.MAX_VALUE)))
-                .addContainerGap(12, Short.MAX_VALUE))
+                        .addContainerGap(14, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -168,7 +159,7 @@ public class CompromissoRemover extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jToggleButtonEncontrarRemover)
                     .addComponent(JButtonSelecionar))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextFieldNomeCompromissoAchadoRemover, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
@@ -176,12 +167,11 @@ public class CompromissoRemover extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(jTextFieldHoraCompromissoAchadoRemover, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(6, 6, 6)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel5)
-                    .addComponent(jFormattedTextData, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
-                .addGap(3, 3, 3)
+                    .addComponent(jDateChooserRemoverE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(6, 6, 6)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -210,7 +200,7 @@ public class CompromissoRemover extends javax.swing.JInternalFrame {
 
             encontrado = GerenciadorBD.listarDatas(dataFomatador.format(jDateChooserRemover.getDate()), AuxCompromissoUsuario.getIdUC());
             
-            if(encontrado.size() == 0){
+            if(encontrado.isEmpty()){
                 JOptionPane.showMessageDialog(null, "Nenhum compromisso encontrado com essa data");
             }
             else{    
@@ -234,9 +224,18 @@ public class CompromissoRemover extends javax.swing.JInternalFrame {
         
       
         jTextFieldNomeCompromissoAchadoRemover.setText(aC.getNome());
-        jTextFieldHoraCompromissoAchadoRemover.setText(aC.getHora());
-        jFormattedTextData.setText(aC.getData());
+        jTextFieldHoraCompromissoAchadoRemover.setText(aC.getHora());      
         jTextAreaInfoCompromissoAchadoRemover.setText(aC.getInfo());
+        
+        try{
+            Date date = new SimpleDateFormat("yyyy/MM/dd").parse(aC.getData());
+            jDateChooserRemoverE.setDateFormatString("yyyy/MM/dd");
+            jDateChooserRemoverE.setDate(date);
+                 
+        }
+        catch (ParseException ex) {
+            Logger.getLogger(CompromissoAlterar.class.getName()).log(Level.SEVERE, null, ex);
+        }
        
     }//GEN-LAST:event_JButtonSelecionarActionPerformed
 
@@ -255,8 +254,7 @@ public class CompromissoRemover extends javax.swing.JInternalFrame {
     private javax.swing.JButton JButtonSelecionar;
     private javax.swing.JComboBox<String> jComboBoxRemover;
     private com.toedter.calendar.JDateChooser jDateChooserRemover;
-    private javax.swing.JFormattedTextField jFormattedTextData;
-    private javax.swing.JLabel jLabel1;
+    private com.toedter.calendar.JDateChooser jDateChooserRemoverE;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

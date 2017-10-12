@@ -50,12 +50,7 @@ public class GerenciadorBD {
         banco.connect();
         
         GBDLista = banco.selecionaCompromissoUltimos(idFKGBD, dataAtualGBD);
-    
-        for(int i=0;i<GBDLista.size(); i++){
-            
-            System.out.println("Id: "+ GBDLista.get(i).getId() + "  Nome: " + GBDLista.get(i).getNome() + "  Hora:  " + GBDLista.get(i).getHora() + "  Data: " + GBDLista.get(i).getData()+ "  Info: " + GBDLista.get(i).getInfo() + "  idfk: " + GBDLista.get(i).getIdFK()+"\n\n"); 
-        }
-    
+       
         banco.closeConnect();
         
         return GBDLista;
@@ -68,12 +63,7 @@ public class GerenciadorBD {
         banco.connect();
         
         GBDLista = banco.selecionaCompromissoNomes(nomeGBD,idFKGBD,dataAtualGBD);
-    
-        for(int i=0;i<GBDLista.size(); i++){
-            
-            System.out.println("Id: "+ GBDLista.get(i).getId() + "  Nome: " + GBDLista.get(i).getNome() + "  Hora:  " + GBDLista.get(i).getHora() + "  Data: " + GBDLista.get(i).getData()+ "  Info: " + GBDLista.get(i).getInfo() + "\n\n"); 
-        }
-    
+      
         banco.closeConnect();
         
         return GBDLista;
@@ -101,13 +91,11 @@ public class GerenciadorBD {
         Compromisso cGBD = banco.selecionaCompromissoAlterar(nomeGBD, dataGBD, idFKGBD);
     
         banco.closeConnect();
-        System.out.println("teste:" + cGBD.getNome());
         
         return cGBD;  
         
     }
             
-    
 
     //Usuário
     public static void inserirUusuario(Usuario usuarioGBD){
@@ -149,9 +137,7 @@ public class GerenciadorBD {
         Usuario uGBD = banco.selecionaUsuario(loginGBD, senhaGBD);
     
         banco.closeConnect();
-        
-        System.out.println( " nome:" + uGBD.getLogin()+" senha: " + uGBD.getSenha());
-        
+                
         return uGBD; 
         
     }
@@ -162,12 +148,7 @@ public class GerenciadorBD {
         banco.connect();
         
         GBDLista = banco.selecionaDadosUsuarioTodos();
-    
-        for(int i=0;i<GBDLista.size(); i++){
-            
-            System.out.println("Id: "+ GBDLista.get(i).getId()+ "  Nome: " + GBDLista.get(i).getLogin()+  "\n\n"); 
-        }
-    
+      
         banco.closeConnect();
         
         return GBDLista;
@@ -175,7 +156,8 @@ public class GerenciadorBD {
         
     }
     
-    //tt
+    
+    //Check
     public static boolean checkLogin(String loginGBD, String senhaGBD){
         
         banco.connect();

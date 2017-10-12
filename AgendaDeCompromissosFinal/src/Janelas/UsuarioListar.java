@@ -86,7 +86,7 @@ public class UsuarioListar extends javax.swing.JInternalFrame {
         
         ultimos = GerenciadorBD.listarUsuarioTodos();
         
-        if(ultimos.size() == 0){
+        if(ultimos.isEmpty()){
                 JOptionPane.showMessageDialog(null, "Nenhum compromisso encontrado com esse nome");
         }
         else{
