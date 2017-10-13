@@ -77,6 +77,7 @@ public class CompromissoRemover extends javax.swing.JInternalFrame {
         jLabel5.setText("Data:");
 
         jTextAreaInfoCompromissoAchadoRemover.setColumns(20);
+        jTextAreaInfoCompromissoAchadoRemover.setLineWrap(true);
         jTextAreaInfoCompromissoAchadoRemover.setRows(5);
         jScrollPane2.setViewportView(jTextAreaInfoCompromissoAchadoRemover);
 

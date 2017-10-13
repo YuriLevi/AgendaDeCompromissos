@@ -81,6 +81,7 @@ public class CompromissoAlterar extends javax.swing.JInternalFrame {
         jLabel6.setText("Info:");
 
         jTextAreaInfoCompromissoAchadoAlterar.setColumns(20);
+        jTextAreaInfoCompromissoAchadoAlterar.setLineWrap(true);
         jTextAreaInfoCompromissoAchadoAlterar.setRows(5);
         jScrollPane2.setViewportView(jTextAreaInfoCompromissoAchadoAlterar);
 
